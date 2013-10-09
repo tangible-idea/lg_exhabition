@@ -1,0 +1,274 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Collections.Generic;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Reflection;
+using Clarity.Demo.ImageSequencer;
+
+namespace lgshow
+{
+    public partial class MainWindow : Window
+    {
+        ManipulationModes currentMode = ManipulationModes.All;
+        List<List<BitmapSource>> lst2xPNG;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            // Build list of radio buttons
+            foreach (ManipulationModes mode in Enum.GetValues(typeof(ManipulationModes)))
+            {
+                RadioButton radio = new RadioButton
+                {
+                    Content = mode,
+                    IsChecked = mode == currentMode,
+                };
+                radio.Checked += new RoutedEventHandler(OnRadioChecked);
+                modeList.Children.Add(radio);
+            }
+        }
+
+        // png 전부 로드 [10/9/2013 Administrator]
+        public void LoadImages(string strPath, ImageSequencerControl seq)
+        {
+            List<BitmapSource> lstSeq = new List<BitmapSource>();
+            string str = strPath;
+            string str2 = ".png";
+
+            Assembly executingAssembly = Assembly.GetExecutingAssembly();
+
+            for (int i = 0; i <= 39; i++)
+            {
+                string filename = string.Format("{0}{1}{2}{3}", this.GetType().Namespace, str, i.ToString("00000"), str2);
+                BitmapImage item = new BitmapImage();
+                item.BeginInit();
+                item.StreamSource = executingAssembly.GetManifestResourceStream(filename);
+                item.CacheOption = BitmapCacheOption.OnLoad;
+                item.CreateOptions = BitmapCreateOptions.None;
+                item.EndInit();
+                item.Freeze();
+                lstSeq.Add(item);
+            }
+
+            lst2xPNG.Add(lstSeq);
+
+            seq.Load(lstSeq);
+            seq.Play();
+        }
+
+
+
+        void OnRadioChecked(object sender, RoutedEventArgs args)
+        {
+            currentMode = (ManipulationModes)(sender as RadioButton).Content;
+        }
+
+        protected override void OnManipulationStarting(ManipulationStartingEventArgs args)
+        {
+            args.ManipulationContainer = this;
+            args.Mode = currentMode;
+
+            // Adjust Z-order
+            FrameworkElement element = args.Source as FrameworkElement;
+            Panel pnl = element.Parent as Panel;
+
+            for (int i = 0; i < pnl.Children.Count; i++)
+                Panel.SetZIndex(pnl.Children[i],
+                    pnl.Children[i] == element ? pnl.Children.Count : i);
+
+            args.Handled = true;
+            base.OnManipulationStarting(args);
+        }
+
+        protected override void OnManipulationDelta(ManipulationDeltaEventArgs args)
+        {
+            UIElement element = args.Source as UIElement;
+            MatrixTransform xform = element.RenderTransform as MatrixTransform;
+            Matrix matrix = xform.Matrix;
+            ManipulationDelta delta = args.DeltaManipulation;
+            Point center = args.ManipulationOrigin;
+            matrix.Translate(-center.X, -center.Y);
+            matrix.Scale(delta.Scale.X, delta.Scale.Y);
+            matrix.Rotate(delta.Rotation);
+            matrix.Translate(center.X, center.Y);
+            matrix.Translate(delta.Translation.X, delta.Translation.Y);
+            xform.Matrix = matrix;
+
+            args.Handled = true;
+            base.OnManipulationDelta(args);
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+          //player1.Play();
+          //button1.Tag = "pause";
+          //button1.Content = "일시정지";
+        }
+
+        private void player1_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+          if (sender.GetType().ToString() == "System.Windows.Controls.MediaElement")
+          {
+            MediaElement me = sender as MediaElement;
+            MessageBox.Show("11");
+          }
+        }
+
+        private void player1_StylusSystemGesture(object sender, StylusSystemGestureEventArgs e)
+        {
+          //if (e.SystemGesture == SystemGesture.Tap)
+          //{
+
+          //  Button b = button1;
+          //  if (b.Tag.Equals("pause"))
+          //  {
+          //    b.Tag = "play";
+          //    b.Content = "재생";
+          //    player1.Pause();
+          //  }
+          //  else if (b.Tag.Equals("play"))
+          //  {
+          //    b.Tag = "pause";
+          //    b.Content = "일시정지";
+          //    player1.Play();
+          //  }
+          //}
+        }
+
+        private void RectOverlap()
+        {
+            rct_fadeout.Opacity = 0.3;
+           // btn_multiv.set
+        }
+
+        private void ImageFocusOver(Image img)
+        {
+            img.Visibility = Visibility.Visible;
+            img.HorizontalAlignment = HorizontalAlignment.Center;
+            img.VerticalAlignment = VerticalAlignment.Center;
+        }
+
+        private void btn_multiv_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_multiv);
+            RectOverlap();
+            
+        }
+
+       
+        private void btn_turboheat_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_turbo);
+
+            RectOverlap();
+        }
+
+        private void btn_ghp_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_ghp);
+
+            RectOverlap();
+        }
+
+        private void btn_name_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_name);
+
+            RectOverlap();
+        }
+
+        private void btn_bms_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_bms1);
+            this.ImageFocusOver(img_bms2);
+
+            RectOverlap();
+        }
+
+        private void btn_tms_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_tms1);
+            this.ImageFocusOver(img_tms2);
+
+            RectOverlap();
+        }
+
+        private void btn_solar_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_solar);
+
+            RectOverlap();
+        }
+
+        private void btn_geo_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_geo1);
+            this.ImageFocusOver(img_geo2);
+            RectOverlap();
+        }
+
+        private void btn_heat_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_heat1);
+            this.ImageFocusOver(img_heat2);
+            RectOverlap();
+        }
+
+        private void btn_chiller_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_chiller1);
+            this.ImageFocusOver(img_chiller2);
+            RectOverlap();
+        }
+
+        private void btn_light_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_light);
+            RectOverlap();
+        }
+
+        private void btn_school_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_school1);
+            this.ImageFocusOver(img_school2);
+            RectOverlap();
+        }
+
+        private void btn_building_Click(object sender, RoutedEventArgs e)
+        {
+            this.ImageFocusOver(img_building1);
+            this.ImageFocusOver(img_building2);
+            RectOverlap();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            lst2xPNG = new List<List<BitmapSource>>();
+
+            LoadImages(".Images.icon.bms.빌딩관리시스템_", seq_bms);
+            LoadImages(".Images.icon.building.building_", seq_building);
+            LoadImages(".Images.icon.chiller.흡수식칠러_", seq_chiller);
+            LoadImages(".Images.icon.geo_all.지열 3_", seq_geo_all);
+            LoadImages(".Images.icon.geo1.지열_", seq_geo1);
+            LoadImages(".Images.icon.geo2.지열 2_", seq_geo2);
+            LoadImages(".Images.icon.home.home_", seq_home);
+            LoadImages(".Images.icon.lg.LG_", seq_lgenergy);
+            LoadImages(".Images.icon.school.school_", seq_school);
+            LoadImages(".Images.icon.solar.태양광_", seq_solar);
+            LoadImages(".Images.icon.tms.원격유지보수_", seq_tms);
+        }
+
+
+
+
+
+    }
+}

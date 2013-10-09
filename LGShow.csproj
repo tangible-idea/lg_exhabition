@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0A5E8AE2-F7AC-40E9-806C-E39BFA6D83A6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>lgshow</RootNamespace>
+    <AssemblyName>lgshow</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="ImageSequencer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImageSequencer.xaml.cs">
+      <DependentUpon>ImageSequencer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="movie\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BMS 1.jpg" />
+    <Resource Include="Images\BMS 2.jpg" />
+    <Resource Include="Images\GHP 설치사례.jpg" />
+    <Resource Include="Images\LED.jpg" />
+    <Resource Include="Images\LG ENERGY BALANCE CITY.jpg" />
+    <Resource Include="Images\Multi V 설치사례.jpg" />
+    <Resource Include="Images\TMS 1.jpg" />
+    <Resource Include="Images\TMS 2.jpg" />
+    <Resource Include="Images\빌딩-MULTI V 1.jpg" />
+    <Resource Include="Images\빌딩-MULTI V 2.jpg" />
+    <Resource Include="Images\스쿨_GHP 1.jpg" />
+    <Resource Include="Images\스쿨_GHP 2.jpg" />
+    <Resource Include="Images\지열_MultiVGEO 1.jpg" />
+    <Resource Include="Images\지열_MultiVGEO 2.jpg" />
+    <Resource Include="Images\태양광.jpg" />
+    <Resource Include="Images\터보 히트펌프 설치사례.jpg" />
+    <Resource Include="Images\터보히트펌프 1.jpg" />
+    <Resource Include="Images\터보히트펌프 2.jpg" />
+    <Resource Include="Images\흡수식칠러 1.jpg" />
+    <Resource Include="Images\흡수식칠러 2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\icon\building\building_00000.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00001.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00002.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00003.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00004.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00005.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00006.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00007.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00008.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00009.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00010.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00011.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00012.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00013.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00014.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00015.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00016.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00017.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00018.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00019.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00020.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00021.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00022.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00023.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00024.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00025.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00026.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00027.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00028.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00029.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00030.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00031.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00032.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00033.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00034.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00035.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00036.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00037.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00038.png" />
+    <EmbeddedResource Include="Images\icon\building\building_00039.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00000.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00001.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00002.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00003.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00004.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00005.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00006.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00007.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00008.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00009.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00010.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00011.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00012.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00013.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00014.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00015.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00016.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00017.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00018.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00019.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00020.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00021.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00022.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00023.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00024.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00025.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00026.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00027.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00028.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00029.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00030.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00031.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00032.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00033.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00034.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00035.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00036.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00037.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00038.png" />
+    <EmbeddedResource Include="Images\icon\home\home_00039.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00000.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00001.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00002.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00003.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00004.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00005.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00006.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00007.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00008.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00009.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00010.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00011.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00012.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00013.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00014.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00015.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00016.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00017.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00018.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00019.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00020.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00021.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00022.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00023.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00024.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00025.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00026.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00027.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00028.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00029.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00030.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00031.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00032.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00033.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00034.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00035.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00036.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00037.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00038.png" />
+    <EmbeddedResource Include="Images\icon\lg\LG_00039.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00000.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00001.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00002.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00003.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00004.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00005.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00006.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00007.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00008.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00009.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00010.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00011.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00012.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00013.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00014.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00015.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00016.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00017.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00018.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00019.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00020.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00021.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00022.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00023.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00024.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00025.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00026.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00027.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00028.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00029.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00030.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00031.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00032.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00033.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00034.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00035.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00036.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00037.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00038.png" />
+    <EmbeddedResource Include="Images\icon\school\school_00039.png" />
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00000.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00002.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00003.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00004.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00005.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00006.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00007.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00008.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00009.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00010.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00011.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00012.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00013.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00014.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00015.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00016.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00017.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00018.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00019.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00020.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00021.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00022.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00023.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00024.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00025.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00026.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00027.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00028.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00029.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00030.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00031.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00032.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00033.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00034.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00035.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00036.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00037.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00038.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00039.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00000.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00001.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00002.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00003.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00004.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00005.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00006.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00007.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00008.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00009.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00010.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00011.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00012.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00013.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00014.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00015.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00016.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00017.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00018.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00019.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00020.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00021.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00022.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00023.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00024.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00025.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00026.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00027.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00028.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00029.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00030.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00031.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00032.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00033.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00034.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00035.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00036.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00037.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00038.png" />
+    <EmbeddedResource Include="Images\icon\tms\원격유지보수_00039.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00000.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00001.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00002.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00003.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00004.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00005.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00006.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00007.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00008.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00009.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00010.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00011.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00012.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00013.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00014.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00015.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00016.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00017.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00018.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00019.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00020.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00021.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00022.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00023.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00024.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00025.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00026.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00027.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00028.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00029.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00030.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00031.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00032.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00033.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00034.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00035.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00036.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00037.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00038.png" />
+    <EmbeddedResource Include="Images\icon\geo_all\지열 3_00039.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00000.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00001.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00002.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00003.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00004.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00005.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00006.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00007.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00008.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00009.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00010.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00011.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00012.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00013.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00014.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00015.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00016.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00017.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00018.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00019.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00020.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00021.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00022.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00023.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00024.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00025.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00026.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00027.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00028.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00029.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00030.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00031.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00032.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00033.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00034.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00035.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00036.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00037.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00038.png" />
+    <EmbeddedResource Include="Images\icon\geo1\지열_00039.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00000.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00001.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00002.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00003.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00004.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00005.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00006.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00007.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00008.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00009.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00010.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00011.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00012.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00013.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00014.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00015.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00016.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00017.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00018.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00019.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00020.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00021.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00022.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00023.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00024.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00025.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00026.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00027.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00028.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00029.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00030.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00031.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00032.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00033.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00034.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00035.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00036.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00037.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00038.png" />
+    <EmbeddedResource Include="Images\icon\geo2\지열 2_00039.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00000.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00001.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00002.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00003.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00004.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00005.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00006.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00007.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00008.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00009.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00010.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00011.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00012.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00013.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00014.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00015.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00016.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00017.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00018.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00019.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00020.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00021.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00022.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00023.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00024.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00025.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00026.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00027.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00028.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00029.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00030.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00031.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00032.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00033.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00034.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00035.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00036.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00037.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00038.png" />
+    <EmbeddedResource Include="Images\icon\solar\태양광_00039.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00000.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00001.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00002.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00003.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00004.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00005.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00006.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00007.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00008.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00009.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00010.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00011.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00012.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00013.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00014.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00015.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00016.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00017.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00018.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00019.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00020.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00021.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00022.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00023.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00024.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00025.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00026.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00027.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00028.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00029.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00030.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00031.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00032.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00033.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00034.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00035.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00036.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00037.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00038.png" />
+    <EmbeddedResource Include="Images\icon\chiller\흡수식칠러_00039.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00000.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00001.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00002.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00003.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00004.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00005.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00006.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00007.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00008.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00009.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00010.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00011.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00012.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00013.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00014.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00015.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00016.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00017.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00018.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00019.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00020.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00021.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00022.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00023.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00024.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00025.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00026.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00027.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00028.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00029.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00030.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00031.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00032.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00033.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00034.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00035.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00036.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00037.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00038.png" />
+    <EmbeddedResource Include="Images\icon\heat\히트펌프_00039.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile%28x86 및 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
