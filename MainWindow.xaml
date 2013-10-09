@@ -30,7 +30,7 @@
 
 
         <Grid>
-            <local:ImageSequencerControl x:Name="seq_chiller" Margin="825,827,970,162" />
+            <local:ImageSequencerControl x:Name="seq_chiller" Margin="788,803,938,132" />
             <local:ImageSequencerControl x:Name="seq_solar" Margin="963,129,820,813" />
             <local:ImageSequencerControl x:Name="seq_school" Margin="420,478,1363,464" />
             <local:ImageSequencerControl x:Name="seq_lgenergy" Margin="693,441,1090,501" />
