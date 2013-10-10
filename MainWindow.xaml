@@ -41,25 +41,25 @@
         <!--</Grid>-->
 
 
-        <Button Content="solar" Opacity="0.25" Height="172" HorizontalAlignment="Right" Margin="0,146,803,0" Name="btn_solar" VerticalAlignment="Top" Width="125" Click="btn_solar_Click" Canvas.Left="991" Canvas.Top="0" />
-        <Button Content="bms" Opacity="0.25" Height="166" HorizontalAlignment="Left" Margin="825,827,0,0" Name="btn_bms" VerticalAlignment="Top" Width="152" Click="btn_bms_Click" Grid.RowSpan="2" Canvas.Left="-217" Canvas.Top="-740" />
+        <Button Content="solar" Opacity="0" Height="172" HorizontalAlignment="Right" Margin="0,146,803,0" Name="btn_solar" VerticalAlignment="Top" Width="125" Click="btn_solar_Click" Canvas.Left="991" Canvas.Top="0" />
+        <Button Content="bms" Opacity="0" Height="166" HorizontalAlignment="Left" Margin="825,827,0,0" Name="btn_bms" VerticalAlignment="Top" Width="152" Click="btn_bms_Click" Grid.RowSpan="2" Canvas.Left="-217" Canvas.Top="-740" />
 
-        <Button Content="multiV" Opacity="0.25" Height="240" HorizontalAlignment="Left" Margin="1418,678,0,0" Name="btn_multiv" VerticalAlignment="Top" Width="88" Click="btn_multiv_Click" Grid.RowSpan="2" />
-        <Button Content="turbo" Opacity="0.25" Height="108" HorizontalAlignment="Left" Margin="1550,785,0,0" Name="btn_turboheat" VerticalAlignment="Top" Width="224" Click="btn_turboheat_Click" Grid.RowSpan="2" />
-        <Button Content="ghp" Opacity="0.25" Height="98" HorizontalAlignment="Left" Margin="1512,27,0,0" Name="btn_ghp" VerticalAlignment="Top" Width="354" Click="btn_ghp_Click" Grid.Row="1" Canvas.Left="38" Canvas.Top="872" />
-        <Button Content="logo" Opacity="0.25" Height="82" Margin="705,462,1090,0" Name="btn_name" VerticalAlignment="Top" Click="btn_name_Click" Canvas.Left="-73" Canvas.Top="-13" Width="258" />
-        <Button Content="tms" Opacity="0.25" Height="157" HorizontalAlignment="Right" Margin="0,100,1007,0" Name="btn_tms" VerticalAlignment="Top" Width="142" Click="btn_tms_Click" Canvas.Left="767" Canvas.Top="-6" />
-        <Button Content="geo" Opacity="0.25" Height="158" HorizontalAlignment="Right" Margin="0,441,727,0" Name="btn_geo" VerticalAlignment="Top" Width="291" Click="btn_geo_Click" Canvas.Left="963" Canvas.Top="-38" />
+        <Button Content="multiV" Opacity="0" Height="240" HorizontalAlignment="Left" Margin="1418,678,0,0" Name="btn_multiv" VerticalAlignment="Top" Width="88" Click="btn_multiv_Click" Grid.RowSpan="2" />
+        <Button Content="turbo" Opacity="0" Height="108" HorizontalAlignment="Left" Margin="1550,785,0,0" Name="btn_turboheat" VerticalAlignment="Top" Width="224" Click="btn_turboheat_Click" Grid.RowSpan="2" />
+        <Button Content="ghp" Opacity="0" Height="98" HorizontalAlignment="Left" Margin="1512,27,0,0" Name="btn_ghp" VerticalAlignment="Top" Width="354" Click="btn_ghp_Click" Grid.Row="1" Canvas.Left="38" Canvas.Top="872" />
+        <Button Content="logo" Opacity="0" Height="82" Margin="705,462,1090,0" Name="btn_name" VerticalAlignment="Top" Click="btn_name_Click" Canvas.Left="-73" Canvas.Top="-13" Width="258" />
+        <Button Content="tms" Opacity="0" Height="157" HorizontalAlignment="Right" Margin="0,100,1007,0" Name="btn_tms" VerticalAlignment="Top" Width="142" Click="btn_tms_Click" Canvas.Left="767" Canvas.Top="-6" />
+        <Button Content="geo" Opacity="0" Height="158" HorizontalAlignment="Right" Margin="0,441,727,0" Name="btn_geo" VerticalAlignment="Top" Width="291" Click="btn_geo_Click" Canvas.Left="963" Canvas.Top="-38" />
 
-        <Button Content="heat" Opacity="0.25" Height="172" HorizontalAlignment="Right" Margin="0,611,727,0" Name="btn_heat" VerticalAlignment="Top" Width="153" Click="btn_heat_Click" Canvas.Left="1030" Canvas.Top="-49" />
+        <Button Content="heat" Opacity="0" Height="172" HorizontalAlignment="Right" Margin="0,611,727,0" Name="btn_heat" VerticalAlignment="Top" Width="153" Click="btn_heat_Click" Canvas.Left="1030" Canvas.Top="-49" />
 
-        <Button Content="chiller" Opacity="0.25" Height="160" HorizontalAlignment="Right" Margin="0,827,970,0" Name="btn_chiller" VerticalAlignment="Top" Width="209" Click="btn_chiller_Click" Grid.RowSpan="2" Canvas.Left="791" Canvas.Top="-42" />
+        <Button Content="chiller" Opacity="0" Height="160" HorizontalAlignment="Right" Margin="0,827,970,0" Name="btn_chiller" VerticalAlignment="Top" Width="209" Click="btn_chiller_Click" Grid.RowSpan="2" Canvas.Left="791" Canvas.Top="-42" />
 
-        <Button Content="light" Opacity="0.25" Height="151" HorizontalAlignment="Right" Margin="0,827,970,0" Name="btn_light" VerticalAlignment="Top" Width="187" Click="btn_light_Click" Grid.RowSpan="2" Canvas.Left="440" Canvas.Top="-174" />
+        <Button Content="light" Opacity="0" Height="151" HorizontalAlignment="Right" Margin="0,827,970,0" Name="btn_light" VerticalAlignment="Top" Width="187" Click="btn_light_Click" Grid.RowSpan="2" Canvas.Left="440" Canvas.Top="-174" />
 
-        <Button Content="school" Opacity="0.25" Height="129" HorizontalAlignment="Right" Margin="0,492,1375,0" Name="btn_school" VerticalAlignment="Top" Width="197" Click="btn_school_Click" Canvas.Left="329" Canvas.Top="-14" />
+        <Button Content="school" Opacity="0" Height="129" HorizontalAlignment="Right" Margin="0,492,1375,0" Name="btn_school" VerticalAlignment="Top" Width="197" Click="btn_school_Click" Canvas.Left="329" Canvas.Top="-14" />
 
-        <Button Content="building" Opacity="0.25" Height="217" HorizontalAlignment="Right" Margin="0,340,1314,0" Name="btn_building" VerticalAlignment="Top" Width="186" Click="btn_building_Click" Canvas.Left="408" Canvas.Top="-114" />
+        <Button Content="building" Opacity="0" Height="217" HorizontalAlignment="Right" Margin="0,340,1314,0" Name="btn_building" VerticalAlignment="Top" Width="186" Click="btn_building_Click" Canvas.Left="408" Canvas.Top="-114" />
         
         
         <Rectangle Opacity="0" Canvas.Left="0" Canvas.Top="0" Width="1920" Height="1080"  Name="rct_fadeout" Fill="Black"
