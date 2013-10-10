@@ -18,22 +18,24 @@ namespace lgshow
     {
         ManipulationModes currentMode = ManipulationModes.All;
         List<List<BitmapSource>> lst2xPNG;
+        Image m_currImage1 = null;
+        Image m_currImage2 = null;
 
         public MainWindow()
         {
             InitializeComponent();
 
             // Build list of radio buttons
-            foreach (ManipulationModes mode in Enum.GetValues(typeof(ManipulationModes)))
-            {
-                RadioButton radio = new RadioButton
-                {
-                    Content = mode,
-                    IsChecked = mode == currentMode,
-                };
-                radio.Checked += new RoutedEventHandler(OnRadioChecked);
-                modeList.Children.Add(radio);
-            }
+            //foreach (ManipulationModes mode in Enum.GetValues(typeof(ManipulationModes)))
+            //{
+            //    RadioButton radio = new RadioButton
+            //    {
+            //        Content = mode,
+            //        IsChecked = mode == currentMode,
+            //    };
+            //    radio.Checked += new RoutedEventHandler(OnRadioChecked);
+            //    modeList.Children.Add(radio);
+            //}
         }
 
         // png 전부 로드 [10/9/2013 Administrator]
@@ -145,16 +147,70 @@ namespace lgshow
 
         private void RectOverlap()
         {
-            rct_fadeout.Opacity = 0.3;
+            rct_fadeout.Visibility = Visibility.Visible;
+            rct_fadeout.Opacity = 0.4;
            // btn_multiv.set
+        }
+
+        private void RectHidden()
+        {
+            rct_fadeout.Visibility = Visibility.Hidden;
+            rct_fadeout.Opacity = 0.0;
         }
 
         private void ImageFocusOver(Image img)
         {
+            //if (m_currImage1==null)
+            //{
+            //}
+            //else
+            //{
+            //    m_currImage1.Visibility = Visibility.Hidden;
+            //}
             img.Visibility = Visibility.Visible;
-            img.HorizontalAlignment = HorizontalAlignment.Center;
-            img.VerticalAlignment = VerticalAlignment.Center;
+            img.SetValue(Canvas.LeftProperty, 0d);
+            img.SetValue(Canvas.TopProperty, 0d);
+            //img.Margin = new Thickness(320, 180, 320, 180);
+            //img.HorizontalAlignment = HorizontalAlignment.Center;
+            //img.VerticalAlignment = VerticalAlignment.Center;
+            m_currImage1 = img;
         }
+
+        private void ImageFocusOver(Image img1, Image img2)
+        {
+            m_currImage1 = img1;
+            m_currImage2 = img2;
+
+            img1.Visibility = Visibility.Visible;
+            img1.SetValue(Canvas.LeftProperty, -320d);
+            img1.SetValue(Canvas.TopProperty, 0d);
+
+            img2.Visibility = Visibility.Visible;
+            img2.SetValue(Canvas.LeftProperty, 320d);
+            img2.SetValue(Canvas.TopProperty, 0d);
+        }
+
+        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            if ( (m_currImage1 == null) || (m_currImage2 == null) ) 
+            {
+            }
+            else
+            {
+                m_currImage1.Visibility = Visibility.Hidden;
+                m_currImage2.Visibility = Visibility.Hidden;
+                RectHidden();
+            }
+
+            if ((m_currImage1 != null))
+            {
+                m_currImage1.Visibility = Visibility.Hidden;
+                RectHidden();
+            }
+        }
+
+
 
         private void btn_multiv_Click(object sender, RoutedEventArgs e)
         {
@@ -187,16 +243,14 @@ namespace lgshow
 
         private void btn_bms_Click(object sender, RoutedEventArgs e)
         {
-            this.ImageFocusOver(img_bms1);
-            this.ImageFocusOver(img_bms2);
+            this.ImageFocusOver(img_bms1, img_bms2);
 
             RectOverlap();
         }
 
         private void btn_tms_Click(object sender, RoutedEventArgs e)
         {
-            this.ImageFocusOver(img_tms1);
-            this.ImageFocusOver(img_tms2);
+            this.ImageFocusOver(img_tms1, img_tms2);
 
             RectOverlap();
         }
@@ -210,22 +264,19 @@ namespace lgshow
 
         private void btn_geo_Click(object sender, RoutedEventArgs e)
         {
-            this.ImageFocusOver(img_geo1);
-            this.ImageFocusOver(img_geo2);
+            this.ImageFocusOver(img_geo1, img_geo2);
             RectOverlap();
         }
 
         private void btn_heat_Click(object sender, RoutedEventArgs e)
         {
-            this.ImageFocusOver(img_heat1);
-            this.ImageFocusOver(img_heat2);
+            this.ImageFocusOver(img_heat1, img_heat2);
             RectOverlap();
         }
 
         private void btn_chiller_Click(object sender, RoutedEventArgs e)
         {
-            this.ImageFocusOver(img_chiller1);
-            this.ImageFocusOver(img_chiller2);
+            this.ImageFocusOver(img_chiller1, img_chiller2);
             RectOverlap();
         }
 
@@ -237,15 +288,13 @@ namespace lgshow
 
         private void btn_school_Click(object sender, RoutedEventArgs e)
         {
-            this.ImageFocusOver(img_school1);
-            this.ImageFocusOver(img_school2);
+            this.ImageFocusOver(img_school1, img_school2);
             RectOverlap();
         }
 
         private void btn_building_Click(object sender, RoutedEventArgs e)
         {
-            this.ImageFocusOver(img_building1);
-            this.ImageFocusOver(img_building2);
+            this.ImageFocusOver(img_building1, img_building2);
             RectOverlap();
         }
 
@@ -257,13 +306,14 @@ namespace lgshow
             LoadImages(".Images.icon.building.building_", seq_building);
             LoadImages(".Images.icon.chiller.흡수식칠러_", seq_chiller);
             LoadImages(".Images.icon.geo_all.지열 3_", seq_geo_all);
-            LoadImages(".Images.icon.geo1.지열_", seq_geo1);
-            LoadImages(".Images.icon.geo2.지열 2_", seq_geo2);
+            //LoadImages(".Images.icon.geo1.지열_", seq_geo1);
+            //LoadImages(".Images.icon.geo2.지열 2_", seq_geo2);
             LoadImages(".Images.icon.home.home_", seq_home);
             LoadImages(".Images.icon.lg.LG_", seq_lgenergy);
             LoadImages(".Images.icon.school.school_", seq_school);
             LoadImages(".Images.icon.solar.태양광_", seq_solar);
             LoadImages(".Images.icon.tms.원격유지보수_", seq_tms);
+            LoadImages(".Images.icon.heat.히트펌프_", seq_heat);
         }
 
 
