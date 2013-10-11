@@ -25,6 +25,11 @@ namespace lgshow
         {
             InitializeComponent();
 
+            //MessageBox.Show("new");
+            Window1 win2 = new Window1();
+            //win2.Owner = this;
+            win2.Show();
+
             // Build list of radio buttons
             //foreach (ManipulationModes mode in Enum.GetValues(typeof(ManipulationModes)))
             //{
