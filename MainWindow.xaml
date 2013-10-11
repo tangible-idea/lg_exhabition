@@ -27,12 +27,11 @@
 
 
         <!--<Grid>-->
-        <local:ImageSequencerControl x:Name="seq_chiller" Canvas.Top="785" Canvas.Left="791" Width="209" Height="160" Grid.RowSpan="2" />
+        <local:ImageSequencerControl x:Name="seq_chiller" Canvas.Top="785" Canvas.Left="791" Width="209" Height="160" />
         <local:ImageSequencerControl x:Name="seq_solar" Canvas.Top="146" Canvas.Left="991" Width="126" Height="172" />
         <local:ImageSequencerControl x:Name="seq_school" Canvas.Top="478" Canvas.Left="408" Width="118" Height="129" />
         <local:ImageSequencerControl x:Name="seq_lgenergy" Canvas.Top="449" Canvas.Left="632" Width="258" Height="82" />
         <local:ImageSequencerControl x:Name="seq_home" Canvas.Top="653" Canvas.Left="523" Width="104" Height="129" />
-
         <local:ImageSequencerControl x:Name="seq_heat"  Canvas.Left="1030" Canvas.Top="562" Width="153" Height="172" />
         <local:ImageSequencerControl x:Name="seq_geo_all" Canvas.Left="963" Canvas.Top="403"  Width="291" Height="158" />
         <local:ImageSequencerControl x:Name="seq_building" Canvas.Left="502" Canvas.Top="334"  Width="92" Height="108" />
@@ -68,7 +67,10 @@
             <Image Source="Images/Multi V 설치사례.jpg"  
                Name="img_multiv"
                IsManipulationEnabled="True" Visibility="Hidden"
-               RenderTransform="0.5 0 0 0.5 600 400"  Stretch="UniformToFill" Width="1250" Height="726"/>
+               RenderTransform="0.5 0 0 0.5 600 400"  Stretch="UniformToFill"
+               Width="1250" Height="726"
+               StylusSystemGesture="Image_Gesture"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/터보 히트펌프 설치사례.jpg"
                Name="img_turbo"

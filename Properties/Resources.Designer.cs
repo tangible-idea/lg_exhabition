@@ -59,5 +59,15 @@ namespace lgshow.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] water_bubble_high {
+            get {
+                object obj = ResourceManager.GetObject("water_bubble_high", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

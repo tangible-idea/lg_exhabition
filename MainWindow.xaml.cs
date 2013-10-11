@@ -20,15 +20,24 @@ namespace lgshow
         List<List<BitmapSource>> lst2xPNG;
         Image m_currImage1 = null;
         Image m_currImage2 = null;
+        System.Media.SoundPlayer m_SP = null;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            //m_SP = new System.Media.SoundPlayer();
+            //System.IO.Stream stream = new System.IO.MemoryStream(Properties.Resources.water_bubble_high);
+            //m_SP.Stream = stream;   //(리소스에 등록한 파일명을 Properties.Recources를 통해 바로 불러올 수있음)
+            m_SP = new System.Media.SoundPlayer("water_bubble_high.mp3");
+
+            if (!m_SP.IsLoadCompleted)
+                MessageBox.Show("sound load failed");
+
             //MessageBox.Show("new");
-            Window1 win2 = new Window1();
+            ShowWindow win4K = new ShowWindow();
             //win2.Owner = this;
-            win2.Show();
+            win4K.Show();
 
             // Build list of radio buttons
             //foreach (ManipulationModes mode in Enum.GetValues(typeof(ManipulationModes)))
@@ -129,6 +138,43 @@ namespace lgshow
           }
         }
 
+
+        //  [10/12/2013 Administrator]
+        private void Image_Gesture(object sender, StylusSystemGestureEventArgs e)
+        {
+            //this.Title = e.SystemGesture.ToString();
+            //MessageBox.Show("event");
+
+            //Image img = sender as Image;
+
+            //GeneralTransform transform = img.TransformToAncestor(this); 
+            //Point rootPoint = transform.Transform(new Point(0, 0));
+
+            //if ((rootPoint.Y < 100.0f))
+            //{
+            //    MessageBox.Show(img.ToString());
+            //}
+
+            //if (e.SystemGesture == SystemGesture.Drag)
+            //{
+                //MessageBox.Show("Drag");
+            //}
+        }
+
+        private void Image_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            Image img = sender as Image;
+
+            GeneralTransform transform = img.TransformToAncestor(this);
+            Point rootPoint = transform.Transform(new Point(0, 0));
+            
+            if ((rootPoint.Y < 100.0f))
+            {
+                MessageBox.Show(img.Name);
+            }
+        }
+
+
         private void player1_StylusSystemGesture(object sender, StylusSystemGestureEventArgs e)
         {
           //if (e.SystemGesture == SystemGesture.Tap)
@@ -155,6 +201,10 @@ namespace lgshow
             rct_fadeout.Visibility = Visibility.Visible;
             rct_fadeout.Opacity = 0.4;
            // btn_multiv.set
+
+            if (m_SP.IsLoadCompleted)
+                m_SP.Play();
+            
         }
 
         private void RectHidden()
