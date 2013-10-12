@@ -64,6 +64,9 @@
         <Rectangle Opacity="0" Canvas.Left="0" Canvas.Top="0" Width="1920" Height="1080"  Name="rct_fadeout" Fill="Black"
                    MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" Visibility="Hidden"></Rectangle>
 
+        
+        <Image Name="img_slideup" Source="Images/밀어올려주세요.png" Canvas.Left="550" Canvas.Top="0"/>
+               
             <Image Source="Images/Multi V 설치사례.jpg"  
                Name="img_multiv"
                IsManipulationEnabled="True" Visibility="Hidden"
@@ -75,101 +78,117 @@
         <Image Source="Images/터보 히트펌프 설치사례.jpg"
                Name="img_turbo"
                IsManipulationEnabled="True"  Visibility="Hidden"
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/GHP 설치사례.jpg"  
                Name="img_ghp"
                IsManipulationEnabled="True" Visibility="Hidden"
-               RenderTransform="0.5 0 0 0.5 600 400"   Stretch="UniformToFill" Width="1250" Height="726"/>
+               RenderTransform="0.5 0 0 0.5 600 400"   Stretch="UniformToFill" Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/LG ENERGY BALANCE CITY.jpg"
                Name="img_name"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" 
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/BMS 1.jpg"
                Name="img_bms1"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/BMS 2.jpg"
                Name="img_bms2"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" 
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/TMS 1.jpg"
                Name="img_tms1"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" 
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/TMS 2.jpg"
                Name="img_tms2"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"/>
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/태양광.jpg"
                Name="img_solar"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" 
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/지열_MultiVGEO 1.jpg"
                Name="img_geo1"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" 
+               ManipulationDelta="Image_ManipulationDelta"/>
+        
         <Image Source="Images/지열_MultiVGEO 2.jpg"
                Name="img_geo2"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" 
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/터보히트펌프 1.jpg"
                Name="img_heat1"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/터보히트펌프 2.jpg"
                Name="img_heat2"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/흡수식칠러 1.jpg"
                Name="img_chiller1"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/흡수식칠러 2.jpg"
                Name="img_chiller2"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/LED.jpg"
                Name="img_light"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/스쿨_GHP 1.jpg"
                Name="img_school1"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
+        
         <Image Source="Images/스쿨_GHP 2.jpg"
                Name="img_school2"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"  />
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/빌딩-MULTI V 1.jpg"
                Name="img_building1"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"/>
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
 
         <Image Source="Images/빌딩-MULTI V 2.jpg"
                Name="img_building2"
                IsManipulationEnabled="True" Visibility="Hidden" 
-               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726" />
-
-
-
-
-
-      
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"/>
+        <Label Canvas.Left="0" Canvas.Top="200" Content="Label" Height="50" Name="label1" Width="278" />
         <!--<Image Source="Images/0927_스쿨_GHP_1.JPG"
                IsManipulationEnabled="True"
                RenderTransform="0.5 0 0 0.5 500 300" Stretch="Fill" Width="600" Height="355"/>

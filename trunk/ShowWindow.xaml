@@ -4,9 +4,14 @@
         Title="ShowWindow" Height="480" Width="800" ResizeMode="NoResize" Topmost="True" WindowStyle="None" Loaded="Window_Loaded" Background="Black">
     <Grid Height="480" Name="grid1" Width="800">
 
+        <Image HorizontalAlignment="Left" Name="img_lge"
+               Stretch="Fill" VerticalAlignment="Top"
+/>
+        
         <MediaElement Name="media_lge" Source="movie/lge_2012.wmv"
                       Stretch="Fill" LoadedBehavior="Manual"/>
-        <!--<Image Height="269" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="285" />-->
+        
+        
         
     </Grid>
 </Window>
