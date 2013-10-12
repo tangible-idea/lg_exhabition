@@ -18,6 +18,7 @@ namespace lgshow
     /// </summary>
     public partial class ShowWindow : Window
     {
+        System.Windows.Threading.DispatcherTimer TimerClock;
         public ShowWindow()
         {
             InitializeComponent();
@@ -53,6 +54,13 @@ namespace lgshow
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             media_lge.Play();
+            media_lge.Visibility = Visibility.Visible;
+            img_lge.Visibility = Visibility.Hidden;
+
+            TimerClock = new System.Windows.Threading.DispatcherTimer();
+            TimerClock.Interval = new TimeSpan(0, 0, 0, 0, 60000); // milliseconds
+            TimerClock.IsEnabled = true;
+            TimerClock.Tick += new EventHandler(TimerClock_Tick);
         }
 
         void LGE_media_ended(object sender, RoutedEventArgs e)
@@ -60,6 +68,26 @@ namespace lgshow
             media_lge.Stop();
             media_lge.Position = TimeSpan.FromSeconds(0);
             media_lge.Play();
+        }
+
+        // 이미지 상단으로 보여줄 떄 [10/13/2013 Administrator]
+        public void ShowImage(ImageSource img_source)
+        {
+            TimerClock.Stop();
+            TimerClock.Start();
+
+            media_lge.Pause();
+            media_lge.Visibility = Visibility.Hidden;
+            img_lge.Visibility= Visibility.Visible;
+
+            img_lge.Source = img_source;
+        }
+
+        void TimerClock_Tick(object sender, EventArgs e)
+        {
+            media_lge.Play();
+            media_lge.Visibility = Visibility.Visible;
+            img_lge.Visibility = Visibility.Hidden;
         }
     }
 }

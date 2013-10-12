@@ -21,6 +21,11 @@ namespace lgshow
         Image m_currImage1 = null;
         Image m_currImage2 = null;
         System.Media.SoundPlayer m_SP = null;
+        ShowWindow win4K = null;
+        
+        int nImageOnLoaded = 0; // 현재 올라와 있는 이미지 개수 [10/13/2013 Administrator]
+        Point ptCurrPos = new Point(); // 마우스 위치2 [10/13/2013 Administrator]
+        Point ptOldPos = new Point(); // 마우스 위치2 [10/13/2013 Administrator]
 
         public MainWindow()
         {
@@ -35,7 +40,7 @@ namespace lgshow
                 MessageBox.Show("sound load failed");
 
             //MessageBox.Show("new");
-            ShowWindow win4K = new ShowWindow();
+            win4K = new ShowWindow();
             //win2.Owner = this;
             win4K.Show();
 
@@ -161,17 +166,48 @@ namespace lgshow
             //}
         }
 
+        // 동작 실시간 확인하면서 [10/12/2013 Administrator]
         private void Image_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
+        //    if (nImageOnLoaded == 0)    // 중복 이벤트 무시
+          //      return;
+
             Image img = sender as Image;
 
             GeneralTransform transform = img.TransformToAncestor(this);
-            Point rootPoint = transform.Transform(new Point(0, 0));
-            
-            if ((rootPoint.Y < 100.0f))
+            ptCurrPos = transform.Transform(new Point(0, 0));
+
+            Vector vtVelocity = e.Velocities.LinearVelocity;
+
+            label1.Content = vtVelocity.Y.ToString();
+
+
+
+            if ((ptCurrPos.Y < 100.0f) && (vtVelocity.Y < -0.75f))
             {
-                MessageBox.Show(img.Name);
+                win4K.ShowImage(img.Source);
+                
+
+                if (nImageOnLoaded == 1)
+                {
+                    img_slideup.Visibility = Visibility.Hidden; // 올려주세요 이미지 사라짐.  
+                    rct_fadeout.Visibility = Visibility.Hidden; // 페이드 사라짐 
+                }
+                
+
+                if (nImageOnLoaded == 2)
+                    nImageOnLoaded = 1;
+                else if (nImageOnLoaded == 1)
+                    nImageOnLoaded = 0;
+
+
+                //img.SetValue(Canvas.LeftProperty, 0d);// 이미지 위치 원래대로 
+                //img.SetValue(Canvas.TopProperty, 0d);
+
+                img.Visibility = Visibility.Hidden; // 이미지 사라짐
             }
+
+           // ptOldPos = ptCurrPos;
         }
 
 
@@ -200,7 +236,8 @@ namespace lgshow
         {
             rct_fadeout.Visibility = Visibility.Visible;
             rct_fadeout.Opacity = 0.4;
-           // btn_multiv.set
+
+            img_slideup.Visibility = Visibility.Visible;
 
             if (m_SP.IsLoadCompleted)
                 m_SP.Play();
@@ -215,16 +252,17 @@ namespace lgshow
 
         private void ImageFocusOver(Image img)
         {
-            //if (m_currImage1==null)
-            //{
-            //}
-            //else
-            //{
-            //    m_currImage1.Visibility = Visibility.Hidden;
-            //}
+            nImageOnLoaded = 1;
+
+            GeneralTransform transform = img.TransformToAncestor(this);
+            ptCurrPos = transform.Transform(new Point(0, 0));
+
+            double lfPosGapX = 600d - ptCurrPos.X;
+            double lfPosGapY = 400d - ptCurrPos.Y;
+
             img.Visibility = Visibility.Visible;
-            img.SetValue(Canvas.LeftProperty, 0d);
-            img.SetValue(Canvas.TopProperty, 0d);
+            img.SetValue(Canvas.LeftProperty, lfPosGapX);
+            img.SetValue(Canvas.TopProperty, lfPosGapY);
             //img.Margin = new Thickness(320, 180, 320, 180);
             //img.HorizontalAlignment = HorizontalAlignment.Center;
             //img.VerticalAlignment = VerticalAlignment.Center;
@@ -233,8 +271,16 @@ namespace lgshow
 
         private void ImageFocusOver(Image img1, Image img2)
         {
+            nImageOnLoaded = 2;
+
             m_currImage1 = img1;
             m_currImage2 = img2;
+
+            GeneralTransform transform = m_currImage1.TransformToAncestor(this);
+            ptCurrPos = transform.Transform(new Point(0, 0));
+
+            ptCurrPos.X = 360;
+            ptCurrPos.Y = 360;
 
             img1.Visibility = Visibility.Visible;
             img1.SetValue(Canvas.LeftProperty, -320d);
@@ -355,6 +401,8 @@ namespace lgshow
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            img_slideup.Visibility = Visibility.Hidden;
+
             lst2xPNG = new List<List<BitmapSource>>();
 
             LoadImages(".Images.icon.bms.빌딩관리시스템_", seq_bms);
