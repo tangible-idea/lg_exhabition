@@ -22,10 +22,12 @@ namespace lgshow
         Image m_currImage2 = null;
         System.Media.SoundPlayer m_SP = null;
         ShowWindow win4K = null;
-        
-        int nImageOnLoaded = 0; // 현재 올라와 있는 이미지 개수 [10/13/2013 Administrator]
-        Point ptCurrPos = new Point(); // 마우스 위치2 [10/13/2013 Administrator]
-        Point ptOldPos = new Point(); // 마우스 위치2 [10/13/2013 Administrator]
+
+        enum EImageStat { STAT_PIC2, STAT_PIC1, STAT_ONEHASGONE, STAT_ALLGONE };
+
+        EImageStat nImageOnLoaded;// 현재 올라와 있는 이미지 개수 [10/13/2013 Administrator]
+        Point ptCurrPos = new Point(); // 사진 위치1[10/13/2013 Administrator]
+        Point ptOldPos = new Point(); // 사진 위치2 [10/13/2013 Administrator]
 
         public MainWindow()
         {
@@ -36,8 +38,8 @@ namespace lgshow
             //m_SP.Stream = stream;   //(리소스에 등록한 파일명을 Properties.Recources를 통해 바로 불러올 수있음)
             m_SP = new System.Media.SoundPlayer("water_bubble_high.mp3");
 
-            if (!m_SP.IsLoadCompleted)
-                MessageBox.Show("sound load failed");
+            //if (!m_SP.IsLoadCompleted)
+            //    MessageBox.Show("sound load failed");
 
             //MessageBox.Show("new");
             win4K = new ShowWindow();
@@ -114,7 +116,9 @@ namespace lgshow
             UIElement element = args.Source as UIElement;
             MatrixTransform xform = element.RenderTransform as MatrixTransform;
             Matrix matrix = xform.Matrix;
+
             ManipulationDelta delta = args.DeltaManipulation;
+
             Point center = args.ManipulationOrigin;
             matrix.Translate(-center.X, -center.Y);
             matrix.Scale(delta.Scale.X, delta.Scale.Y);
@@ -185,20 +189,25 @@ namespace lgshow
 
             if ((ptCurrPos.Y < 100.0f) && (vtVelocity.Y < -0.75f))
             {
-                win4K.ShowImage(img.Source);
-                
+                if (win4K.GetCurrentImage() == img.Source)
+                    return;
 
-                if (nImageOnLoaded == 1)
+                win4K.ShowImage(img.Source);
+
+
+                if ((nImageOnLoaded == EImageStat.STAT_ONEHASGONE) || (nImageOnLoaded == EImageStat.STAT_PIC1))
                 {
                     img_slideup.Visibility = Visibility.Hidden; // 올려주세요 이미지 사라짐.  
                     rct_fadeout.Visibility = Visibility.Hidden; // 페이드 사라짐 
                 }
-                
 
-                if (nImageOnLoaded == 2)
-                    nImageOnLoaded = 1;
-                else if (nImageOnLoaded == 1)
-                    nImageOnLoaded = 0;
+
+                if (nImageOnLoaded == EImageStat.STAT_PIC2) // 사진 2개면
+                    nImageOnLoaded = EImageStat.STAT_ONEHASGONE;    // 한개 보내고
+                else if (nImageOnLoaded == EImageStat.STAT_PIC1)    // 사진 1개면
+                    nImageOnLoaded = EImageStat.STAT_ALLGONE;   // 모두 가고
+                else if (nImageOnLoaded == EImageStat.STAT_ONEHASGONE)  // 사진 1개면
+                    nImageOnLoaded = EImageStat.STAT_ALLGONE;   // 모두 가고
 
 
                 //img.SetValue(Canvas.LeftProperty, 0d);// 이미지 위치 원래대로 
@@ -248,11 +257,13 @@ namespace lgshow
         {
             rct_fadeout.Visibility = Visibility.Hidden;
             rct_fadeout.Opacity = 0.0;
+            img_slideup.Visibility = Visibility.Hidden;
         }
 
+        //  [10/06/2013 Administrator]
         private void ImageFocusOver(Image img)
         {
-            nImageOnLoaded = 1;
+            nImageOnLoaded = EImageStat.STAT_PIC1;
 
             GeneralTransform transform = img.TransformToAncestor(this);
             ptCurrPos = transform.Transform(new Point(0, 0));
@@ -263,15 +274,47 @@ namespace lgshow
             img.Visibility = Visibility.Visible;
             img.SetValue(Canvas.LeftProperty, lfPosGapX);
             img.SetValue(Canvas.TopProperty, lfPosGapY);
-            //img.Margin = new Thickness(320, 180, 320, 180);
-            //img.HorizontalAlignment = HorizontalAlignment.Center;
-            //img.VerticalAlignment = VerticalAlignment.Center;
+
+            //img.Width = 1250;
+            //img.Height = 726;
+            //img.RenderTransformOrigin = new Point(0.5, 0.5);
+
+
+            //ScaleTransform myScaleTransform = new ScaleTransform();
+            //myScaleTransform.ScaleY = 0.5;
+            //myScaleTransform.ScaleX = 0.5;
+
+            //RotateTransform myRotateTransform = new RotateTransform();
+            //myRotateTransform.Angle = 0;
+
+            //TranslateTransform myTranslate = new TranslateTransform();
+            //myTranslate.X = 600;
+            //myTranslate.Y = 400;
+
+            //MatrixTransform myMatrix = new MatrixTransform(0.5d, 0.5d, 0.5d, 0.5d, 0d, 0d);
+            ////SkewTransform mySkew = new SkewTransform (); 
+            ////mySkew.AngleX=0; 
+            ////mySkew.AngleY=0; 
+
+            //// Create a TransformGroup to contain the transforms 
+            //// and add the transforms to it. 
+            //TransformGroup myTransformGroup = new TransformGroup();
+            //myTransformGroup.Children.Add(myScaleTransform);
+            //myTransformGroup.Children.Add(myRotateTransform);
+            //myTransformGroup.Children.Add(myTranslate);
+            //myTransformGroup.Children.Add(myMatrix);
+            ////myTransformGroup.Children.Add(mySkew); 
+
+            //// Associate the transforms to the object 
+            //img.RenderTransform = myTransformGroup;
+            //img.Visibility = Visibility.Visible;
+
             m_currImage1 = img;
         }
 
         private void ImageFocusOver(Image img1, Image img2)
         {
-            nImageOnLoaded = 2;
+            nImageOnLoaded = EImageStat.STAT_PIC2;
 
             m_currImage1 = img1;
             m_currImage2 = img2;
@@ -418,8 +461,11 @@ namespace lgshow
             LoadImages(".Images.icon.tms.원격유지보수_", seq_tms);
             LoadImages(".Images.icon.heat.히트펌프_", seq_heat);
         }
-
-
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //e.Cancel = true;
+            win4K.Close();
+        }
 
 
 

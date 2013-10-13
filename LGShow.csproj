@@ -11,8 +11,7 @@
     <RootNamespace>lgshow</RootNamespace>
     <AssemblyName>lgshow</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -20,7 +19,6 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -33,6 +31,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -40,12 +39,11 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>1</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -55,10 +53,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,13 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ShowWindow.xaml.cs">
-      <DependentUpon>ShowWindow.xaml</DependentUpon>
+    <Compile Include="ImageSequencer.xaml.cs">
+      <DependentUpon>ImageSequencer.xaml</DependentUpon>
     </Compile>
-    <Page Include="ImageSequencer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,16 +85,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ImageSequencer.xaml.cs">
-      <DependentUpon>ImageSequencer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ShowWindow.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="ImageSequencer.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +111,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -134,7 +119,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Sounds\" />
+    <Folder Include="movie\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\BMS 1.jpg" />
@@ -322,46 +307,126 @@
     <EmbeddedResource Include="Images\icon\school\school_00037.png" />
     <EmbeddedResource Include="Images\icon\school\school_00038.png" />
     <EmbeddedResource Include="Images\icon\school\school_00039.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00000.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00001.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00002.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00003.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00004.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00005.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00006.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00007.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00008.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00009.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00010.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00011.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00012.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00013.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00014.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00015.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00016.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00017.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00018.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00019.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00020.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00021.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00022.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00023.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00024.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00025.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00026.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00027.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00028.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00029.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00030.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00031.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00032.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00033.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00034.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00035.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00036.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00037.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00038.png" />
-    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00039.png" />
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00000.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00002.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00003.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00004.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00005.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00006.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00007.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00008.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00009.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00010.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00011.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00012.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00013.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00014.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00015.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00016.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00017.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00018.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00019.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00020.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00021.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00022.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00023.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00024.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00025.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00026.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00027.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00028.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00029.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00030.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00031.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00032.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00033.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00034.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00035.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00036.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00037.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00038.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon\bms\빌딩관리시스템_00039.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images\icon\tms\원격유지보수_00000.png" />
     <EmbeddedResource Include="Images\icon\tms\원격유지보수_00001.png" />
     <EmbeddedResource Include="Images\icon\tms\원격유지보수_00002.png" />
@@ -664,19 +729,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="water_bubble_high.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\밀어올려주세요.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="movie\lge_2012.wmv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
