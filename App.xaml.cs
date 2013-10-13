@@ -12,7 +12,11 @@ namespace lgshow
     /// </summary>
     public partial class App : Application
     {
-
+        public static String[] mArgs;
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            mArgs = e.Args;
+        }
         //private void btn_Display_Secondary_Monitor_Click(object sender, System.EventArgs e)
         //{
         //    Window1 frm_second_mon = new Window1();

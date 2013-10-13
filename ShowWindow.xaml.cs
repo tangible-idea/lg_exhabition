@@ -23,13 +23,39 @@ namespace lgshow
         {
             InitializeComponent();
 
+            int nWidth = 0;
+            int nHeight = 0;
+
+            //MessageBox.Show("test");
+            string[] args= Environment.GetCommandLineArgs();
+            if (args.Length == 3)
+            {
+                nWidth= int.Parse(args[1]);
+                nHeight = int.Parse(args[2]);
+                //String st_arg = "";
+                //for (int i = 0; i < args.Length; i++)
+                //{
+                //    st_arg += args[i] + " ";
+                //}
+                //MessageBox.Show(st_arg);
+            }
+            else
+            {
+                MessageBox.Show("Please input 2 arguments.");
+            }
+
+            
+
             this.WindowStartupLocation = WindowStartupLocation.Manual;
             this.Left = 0;
-            this.Top = -480;
+            this.Top = -1 * nHeight;
             //this.Width = SystemParameters.VirtualScreenWidth;
             //this.Height = SystemParameters.VirtualScreenHeight;
-            this.Width = 800;
-            this.Height = 480;
+            this.Width = nWidth;
+            this.Height = nHeight;
+
+            grid1.Width = nWidth;
+            grid1.Height = nHeight;
             //this.WindowState = WindowState.Maximized;
             this.WindowStyle = WindowStyle.None;
             this.ResizeMode = ResizeMode.NoResize;
@@ -63,6 +89,7 @@ namespace lgshow
             TimerClock.Tick += new EventHandler(TimerClock_Tick);
         }
 
+
         void LGE_media_ended(object sender, RoutedEventArgs e)
         {
             media_lge.Stop();
@@ -81,6 +108,10 @@ namespace lgshow
             img_lge.Visibility= Visibility.Visible;
 
             img_lge.Source = img_source;
+        }
+        public ImageSource GetCurrentImage()
+        {
+            return img_lge.Source;
         }
 
         void TimerClock_Tick(object sender, EventArgs e)
