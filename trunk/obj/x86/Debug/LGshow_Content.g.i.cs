@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/icon/%ed%9e%88%ed%8a%b8%ed%8e%8c%ed%94%84/%ed%9e%88%ed%8a%b8%ed%8e%8c%ed%9" +
-    "4%84_00039.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("movie/lge_2012.wmv")]
 
 

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Reflection;
@@ -14,6 +16,168 @@ using Clarity.Demo.ImageSequencer;
 
 namespace lgshow
 {
+
+    #region public class MatrixAnimation
+    public class MatrixAnimation : MatrixAnimationBase
+    {
+        public Matrix? From
+        {
+            set { SetValue(FromProperty, value); }
+            get { return (Matrix)GetValue(FromProperty); }
+        }
+
+        public static DependencyProperty FromProperty =
+            DependencyProperty.Register("From", typeof(Matrix?), typeof(MatrixAnimation),
+                new PropertyMetadata(null));
+
+        public Matrix? To
+        {
+            set { SetValue(ToProperty, value); }
+            get { return (Matrix)GetValue(ToProperty); }
+        }
+
+        public static DependencyProperty ToProperty =
+            DependencyProperty.Register("To", typeof(Matrix?), typeof(MatrixAnimation),
+                new PropertyMetadata(null));
+
+        public IEasingFunction EasingFunction
+        {
+            get { return (IEasingFunction)GetValue(EasingFunctionProperty); }
+            set { SetValue(EasingFunctionProperty, value); }
+        }
+
+        public static readonly DependencyProperty EasingFunctionProperty =
+            DependencyProperty.Register("EasingFunction", typeof(IEasingFunction), typeof(MatrixAnimation),
+                new UIPropertyMetadata(null));
+
+        public MatrixAnimation()
+        {
+        }
+
+        public MatrixAnimation(Matrix toValue, Duration duration)
+        {
+            To = toValue;
+            Duration = duration;
+        }
+
+        public MatrixAnimation(Matrix toValue, Duration duration, FillBehavior fillBehavior)
+        {
+            To = toValue;
+            Duration = duration;
+            FillBehavior = fillBehavior;
+        }
+
+        public MatrixAnimation(Matrix fromValue, Matrix toValue, Duration duration)
+        {
+            From = fromValue;
+            To = toValue;
+            Duration = duration;
+        }
+
+        public MatrixAnimation(Matrix fromValue, Matrix toValue, Duration duration, FillBehavior fillBehavior)
+        {
+            From = fromValue;
+            To = toValue;
+            Duration = duration;
+            FillBehavior = fillBehavior;
+        }
+
+        protected override Freezable CreateInstanceCore()
+        {
+            return new MatrixAnimation();
+        }
+
+        protected override Matrix GetCurrentValueCore(Matrix defaultOriginValue, Matrix defaultDestinationValue, AnimationClock animationClock)
+        {
+            if (animationClock.CurrentProgress == null)
+            {
+                return Matrix.Identity;
+            }
+
+            var normalizedTime = animationClock.CurrentProgress.Value;
+            if (EasingFunction != null)
+            {
+                normalizedTime = EasingFunction.Ease(normalizedTime);
+            }
+
+            var from = From ?? defaultOriginValue;
+            var to = To ?? defaultDestinationValue;
+
+            var newMatrix = new Matrix(
+                    ((to.M11 - from.M11) * normalizedTime) + from.M11,
+                    ((to.M12 - from.M12) * normalizedTime) + from.M12,
+                    ((to.M21 - from.M21) * normalizedTime) + from.M21,
+                    ((to.M22 - from.M22) * normalizedTime) + from.M22,
+                    ((to.OffsetX - from.OffsetX) * normalizedTime) + from.OffsetX,
+                    ((to.OffsetY - from.OffsetY) * normalizedTime) + from.OffsetY);
+
+            return newMatrix;
+        }
+    }
+    #endregion
+
+    #region public class LinearMatrixAnimation
+    public class LinearMatrixAnimation : AnimationTimeline
+    {
+
+        public Matrix? From
+        {
+            set { SetValue(FromProperty, value); }
+            get { return (Matrix)GetValue(FromProperty); }
+        }
+        public static DependencyProperty FromProperty = DependencyProperty.Register("From", typeof(Matrix?), typeof(LinearMatrixAnimation), new PropertyMetadata(null));
+
+        public Matrix? To
+        {
+            set { SetValue(ToProperty, value); }
+            get { return (Matrix)GetValue(ToProperty); }
+        }
+        public static DependencyProperty ToProperty = DependencyProperty.Register("To", typeof(Matrix?), typeof(LinearMatrixAnimation), new PropertyMetadata(null));
+
+        public LinearMatrixAnimation()
+        {
+        }
+
+        public LinearMatrixAnimation(Matrix from, Matrix to, Duration duration)
+        {
+            Duration = duration;
+            From = from;
+            To = to;
+        }
+
+        public override object GetCurrentValue(object defaultOriginValue, object defaultDestinationValue, AnimationClock animationClock)
+        {
+            if (animationClock.CurrentProgress == null)
+            {
+                return null;
+            }
+
+            double progress = animationClock.CurrentProgress.Value;
+            Matrix from = From ?? (Matrix)defaultOriginValue;
+
+            if (To.HasValue)
+            {
+                Matrix to = To.Value;
+                Matrix newMatrix = new Matrix(((to.M11 - from.M11) * progress) + from.M11, 0, 0, ((to.M22 - from.M22) * progress) + from.M22,
+                                              ((to.OffsetX - from.OffsetX) * progress) + from.OffsetX, ((to.OffsetY - from.OffsetY) * progress) + from.OffsetY);
+                return newMatrix;
+            }
+
+            return Matrix.Identity;
+        }
+
+        protected override System.Windows.Freezable CreateInstanceCore()
+        {
+            return new LinearMatrixAnimation();
+        }
+
+        public override System.Type TargetPropertyType
+        {
+            get { return typeof(Matrix); }
+        }
+    }
+    #endregion 
+
     public partial class MainWindow : Window
     {
         ManipulationModes currentMode = ManipulationModes.All;
@@ -116,19 +280,69 @@ namespace lgshow
             UIElement element = args.Source as UIElement;
             MatrixTransform xform = element.RenderTransform as MatrixTransform;
             Matrix matrix = xform.Matrix;
-
             ManipulationDelta delta = args.DeltaManipulation;
-
             Point center = args.ManipulationOrigin;
+            /*
             matrix.Translate(-center.X, -center.Y);
             matrix.Scale(delta.Scale.X, delta.Scale.Y);
             matrix.Rotate(delta.Rotation);
             matrix.Translate(center.X, center.Y);
-            matrix.Translate(delta.Translation.X, delta.Translation.Y);
+            matrix.Translate(delta.Translation.X, delta.Translation.Y);           
             xform.Matrix = matrix;
+            */
+            Matrix to = matrix;
+            to.Translate(-center.X, -center.Y);
+            to.Scale(delta.Scale.X, delta.Scale.Y);
+            to.Rotate(delta.Rotation);
+            to.Translate(center.X, center.Y);
+            to.Translate(delta.Translation.X, delta.Translation.Y);
+
+            MatrixAnimation b = new MatrixAnimation()
+            {
+                From = matrix,
+                To = to,
+                Duration = TimeSpan.FromMilliseconds(0),
+                FillBehavior = FillBehavior.HoldEnd
+            };
+            (element.RenderTransform as MatrixTransform).BeginAnimation(MatrixTransform.MatrixProperty, b);
+
+
+
+            //tbTranslate.Text = string.Format("Translation: {0}, {1}", delta.Translation.X, delta.Translation.Y);
+            //tbTranslate.Text += string.Format("\r\nTotal Translation: {0}, {1}", args.CumulativeManipulation.Translation.X, args.CumulativeManipulation.Translation.Y);
 
             args.Handled = true;
             base.OnManipulationDelta(args);
+        }
+
+        protected override void OnManipulationCompleted(ManipulationCompletedEventArgs e)
+        {
+
+           // tbCompleted.Text = string.Format("{0}", e.FinalVelocities.LinearVelocity);
+           // tbCompleted.Text += string.Format("\r\n{0}", e.TotalManipulation.Translation);
+            UIElement el = e.Source as UIElement;
+            el.Effect = new BlurEffect() { Radius = 10.0 };
+
+            MatrixTransform xform = el.RenderTransform as MatrixTransform;
+            Matrix matrix = xform.Matrix;
+            Matrix from = matrix;
+            Matrix to = matrix;
+            to.Translate(e.TotalManipulation.Translation.X * Math.Abs(e.FinalVelocities.LinearVelocity.X), e.TotalManipulation.Translation.Y * Math.Abs(e.FinalVelocities.LinearVelocity.Y));
+
+            if (Math.Abs(e.FinalVelocities.LinearVelocity.X) > 0.5 || Math.Abs(e.FinalVelocities.LinearVelocity.Y) > 0.5)
+            {
+                MatrixAnimation b = new MatrixAnimation()
+                {
+                    From = from,
+                    To = to,
+                    Duration = TimeSpan.FromMilliseconds(500),
+                    FillBehavior = FillBehavior.HoldEnd
+                };
+                (el.RenderTransform as MatrixTransform).BeginAnimation(MatrixTransform.MatrixProperty, b);
+            }
+
+
+            base.OnManipulationCompleted(e);
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -183,7 +397,8 @@ namespace lgshow
 
             Vector vtVelocity = e.Velocities.LinearVelocity;
 
-            label1.Content = vtVelocity.Y.ToString();
+            //label1.Content = vtVelocity.Y.ToString();
+            label1.Content = "";
 
 
 
@@ -337,21 +552,21 @@ namespace lgshow
         private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             
-            if ( (m_currImage1 == null) || (m_currImage2 == null) ) 
-            {
-            }
-            else
-            {
-                m_currImage1.Visibility = Visibility.Hidden;
-                m_currImage2.Visibility = Visibility.Hidden;
-                RectHidden();
-            }
+            //if ( (m_currImage1 == null) || (m_currImage2 == null) ) 
+            //{
+            //}
+            //else
+            //{
+            //    m_currImage1.Visibility = Visibility.Hidden;
+            //    m_currImage2.Visibility = Visibility.Hidden;
+            //    RectHidden();
+            //}
 
-            if ((m_currImage1 != null))
-            {
-                m_currImage1.Visibility = Visibility.Hidden;
-                RectHidden();
-            }
+            //if ((m_currImage1 != null))
+            //{
+            //    m_currImage1.Visibility = Visibility.Hidden;
+            //    RectHidden();
+            //}
         }
 
 
