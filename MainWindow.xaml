@@ -72,11 +72,9 @@
                
             <Image Source="Images/Multi V 설치사례.jpg"  
                Name="img_multiv"
-               IsManipulationEnabled="True" Visibility="Hidden"
-               Stretch="UniformToFill"
-               Width="1250" Height="726"
-               StylusSystemGesture="Image_Gesture"
-               ManipulationDelta="Image_ManipulationDelta"
+               IsManipulationEnabled="True" Visibility="Hidden"               
+               RenderTransform="0.5 0 0 0.5 600 400" Stretch="UniformToFill"  Width="1250" Height="726"
+               ManipulationDelta="Image_ManipulationDelta"               
                MaxWidth="1250" MaxHeight="726" />
 
         <Image Source="Images/터보 히트펌프 설치사례.jpg"
