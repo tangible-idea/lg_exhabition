@@ -197,6 +197,8 @@ namespace lgshow
         {
             InitializeComponent();
 
+            label1.Content = "";
+
             //m_SP = new System.Media.SoundPlayer();
             //System.IO.Stream stream = new System.IO.MemoryStream(Properties.Resources.water_bubble_high);
             //m_SP.Stream = stream;   //(리소스에 등록한 파일명을 Properties.Recources를 통해 바로 불러올 수있음)
@@ -398,7 +400,7 @@ namespace lgshow
             Vector vtVelocity = e.Velocities.LinearVelocity;
 
             //label1.Content = vtVelocity.Y.ToString();
-            label1.Content = "";
+           
 
 
 
@@ -480,20 +482,19 @@ namespace lgshow
         {
             nImageOnLoaded = EImageStat.STAT_PIC1;
 
-            GeneralTransform transform = img.TransformToAncestor(this);
-            ptCurrPos = transform.Transform(new Point(0, 0));
+            //GeneralTransform transform = img.TransformToAncestor(this);
+            //ptCurrPos = transform.Transform(new Point(0, 0));
 
-            double lfPosGapX = 600d - ptCurrPos.X;
-            double lfPosGapY = 400d - ptCurrPos.Y;
+            //double lfPosGapX = 600d - ptCurrPos.X;
+            //double lfPosGapY = 400d - ptCurrPos.Y;
 
-            img.Visibility = Visibility.Visible;
-            img.SetValue(Canvas.LeftProperty, lfPosGapX);
-            img.SetValue(Canvas.TopProperty, lfPosGapY);
+            //img.Visibility = Visibility.Visible;
+            //img.SetValue(Canvas.LeftProperty, lfPosGapX);
+            //img.SetValue(Canvas.TopProperty, lfPosGapY);
 
             //img.Width = 1250;
             //img.Height = 726;
             //img.RenderTransformOrigin = new Point(0.5, 0.5);
-
 
             //ScaleTransform myScaleTransform = new ScaleTransform();
             //myScaleTransform.ScaleY = 0.5;
@@ -506,23 +507,17 @@ namespace lgshow
             //myTranslate.X = 600;
             //myTranslate.Y = 400;
 
-            //MatrixTransform myMatrix = new MatrixTransform(0.5d, 0.5d, 0.5d, 0.5d, 0d, 0d);
-            ////SkewTransform mySkew = new SkewTransform (); 
-            ////mySkew.AngleX=0; 
-            ////mySkew.AngleY=0; 
+            MatrixTransform myMatrix = new MatrixTransform(0.5, 0, 0, 0.5d, 750, 380);
 
-            //// Create a TransformGroup to contain the transforms 
-            //// and add the transforms to it. 
             //TransformGroup myTransformGroup = new TransformGroup();
             //myTransformGroup.Children.Add(myScaleTransform);
             //myTransformGroup.Children.Add(myRotateTransform);
             //myTransformGroup.Children.Add(myTranslate);
             //myTransformGroup.Children.Add(myMatrix);
-            ////myTransformGroup.Children.Add(mySkew); 
 
-            //// Associate the transforms to the object 
             //img.RenderTransform = myTransformGroup;
-            //img.Visibility = Visibility.Visible;
+            img.RenderTransform = myMatrix;
+            img.Visibility = Visibility.Visible;
 
             m_currImage1 = img;
         }
@@ -534,19 +529,30 @@ namespace lgshow
             m_currImage1 = img1;
             m_currImage2 = img2;
 
-            GeneralTransform transform = m_currImage1.TransformToAncestor(this);
-            ptCurrPos = transform.Transform(new Point(0, 0));
+            //GeneralTransform transform = m_currImage1.TransformToAncestor(this);
+            //ptCurrPos = transform.Transform(new Point(0, 0));
 
-            ptCurrPos.X = 360;
-            ptCurrPos.Y = 360;
+            //ptCurrPos.X = 360;
+            //ptCurrPos.Y = 360;
 
-            img1.Visibility = Visibility.Visible;
-            img1.SetValue(Canvas.LeftProperty, -320d);
-            img1.SetValue(Canvas.TopProperty, 0d);
+            //img1.Visibility = Visibility.Visible;
+            //img1.SetValue(Canvas.LeftProperty, -320d);
+            //img1.SetValue(Canvas.TopProperty, 0d);
 
-            img2.Visibility = Visibility.Visible;
-            img2.SetValue(Canvas.LeftProperty, 320d);
-            img2.SetValue(Canvas.TopProperty, 0d);
+            //img2.Visibility = Visibility.Visible;
+            //img2.SetValue(Canvas.LeftProperty, 320d);
+            //img2.SetValue(Canvas.TopProperty, 0d);
+
+            MatrixTransform myMatrix1 = new MatrixTransform(0.5, 0, 0, 0.5d, 430, 380);
+            MatrixTransform myMatrix2 = new MatrixTransform(0.5, 0, 0, 0.5d, 1070, 380);
+
+            m_currImage1.RenderTransform = myMatrix1;
+            m_currImage2.RenderTransform = myMatrix2;
+
+            m_currImage1.Visibility = Visibility.Visible;
+            m_currImage2.Visibility = Visibility.Visible;
+
+
         }
 
         private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
