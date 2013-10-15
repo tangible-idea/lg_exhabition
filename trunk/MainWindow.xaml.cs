@@ -507,7 +507,7 @@ namespace lgshow
             //myTranslate.X = 600;
             //myTranslate.Y = 400;
 
-            MatrixTransform myMatrix = new MatrixTransform(0.5, 0, 0, 0.5d, 750, 380);
+            MatrixTransform myMatrix = new MatrixTransform(0.5, 0, 0, 0.5d, 660, 380);
 
             //TransformGroup myTransformGroup = new TransformGroup();
             //myTransformGroup.Children.Add(myScaleTransform);
@@ -543,8 +543,8 @@ namespace lgshow
             //img2.SetValue(Canvas.LeftProperty, 320d);
             //img2.SetValue(Canvas.TopProperty, 0d);
 
-            MatrixTransform myMatrix1 = new MatrixTransform(0.5, 0, 0, 0.5d, 430, 380);
-            MatrixTransform myMatrix2 = new MatrixTransform(0.5, 0, 0, 0.5d, 1070, 380);
+            MatrixTransform myMatrix1 = new MatrixTransform(0.5, 0, 0, 0.5d, 340, 380);
+            MatrixTransform myMatrix2 = new MatrixTransform(0.5, 0, 0, 0.5d, 1000, 380);
 
             m_currImage1.RenderTransform = myMatrix1;
             m_currImage2.RenderTransform = myMatrix2;
