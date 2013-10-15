@@ -68,7 +68,7 @@
                    MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" Visibility="Hidden"></Rectangle>
 
         
-        <Image Name="img_slideup" Source="Images/밀어올려주세요.png" Canvas.Left="730" Canvas.Top="0"/>
+        <Image Name="img_slideup" Source="Images/밀어올려주세요.png" Canvas.Left="660" Canvas.Top="0"/>
                
             <Image Source="Images/Multi V 설치사례.jpg"  
                Name="img_multiv"
