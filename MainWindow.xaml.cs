@@ -360,7 +360,7 @@ namespace lgshow
 
                 base.OnManipulationCompleted(e);
 
-                label1.Content = "to : " + to.OffsetY.ToString() + "\nel : " + xform.Matrix.OffsetY.ToString() + "\ne.total : " + e.TotalManipulation.Translation.Y.ToString() + "\ne.final : " + e.FinalVelocities.LinearVelocity.Y.ToString();
+                //label1.Content = "to : " + to.OffsetY.ToString() + "\nel : " + xform.Matrix.OffsetY.ToString() + "\ne.total : " + e.TotalManipulation.Translation.Y.ToString() + "\ne.final : " + e.FinalVelocities.LinearVelocity.Y.ToString();
                 currImgDestination = to;
                 currImgVelocity = e.FinalVelocities.LinearVelocity;
                 currManipulImage = el as Image;

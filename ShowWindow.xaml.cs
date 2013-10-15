@@ -100,15 +100,53 @@ namespace lgshow
         // 이미지 상단으로 보여줄 떄 [10/13/2013 Administrator]
         public void ShowImage(ImageSource img_source)
         {
+                        //MessageBox.Show(img_source.ToString());
+            string[] strarr = img_source.ToString().Split('/');
+            //for (int i = 0; i < strarr.Length; ++i)
+            //{
+            //    MessageBox.Show(strarr[i]);                
+            //}
+
+            //string strPath= strarr[strarr.Length - 1];
+            //BitmapImage bitmap4K = this.Load4kPNGImage(strarr);
+
             TimerClock.Stop();
             TimerClock.Start();
 
             media_lge.Pause();
-            media_lge.Visibility = Visibility.Hidden;
+            media_lge.Visibility= Visibility.Hidden;
             img_lge.Visibility= Visibility.Visible;
 
             img_lge.Source = img_source;
         }
+
+
+
+        // 고해상도 이미지 불러옴 [10/15/2013 Administrator]
+        public BitmapImage Load4kPNGImage(string[] strarr)
+        {
+            //string str = strPath;
+            //string strFolder = ".Images.4k.";
+            string strURI = strarr[0] + "//" + strarr[2] + "/" + strarr[3] + "/" + strarr[4] + "/4k/" + strarr[5];
+
+            BitmapImage item = new BitmapImage();
+            item.BeginInit();
+            item.UriSource = new Uri(strURI);
+            item.EndInit();
+
+            //System.Reflection.Assembly executingAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+            //string filename = string.Format("{0}{1}{2}", this.GetType().Namespace, strFolder, str);
+            //BitmapImage item = new BitmapImage();
+            //item.BeginInit();
+            //item.StreamSource = executingAssembly.GetManifestResourceStream(filename);
+            //item.CacheOption = BitmapCacheOption.OnLoad;
+            //item.CreateOptions = BitmapCreateOptions.None;
+            //item.EndInit();
+            //item.Freeze();
+
+            return item;
+        }
+
         public ImageSource GetCurrentImage()
         {
             return img_lge.Source;
