@@ -187,6 +187,10 @@ namespace lgshow
         System.Media.SoundPlayer m_SP = null;
         ShowWindow win4K = null;
 
+        Matrix currImgDestination;
+        Vector currImgVelocity;
+        Image currManipulImage = null;
+
         enum EImageStat { STAT_PIC2, STAT_PIC1, STAT_ONEHASGONE, STAT_ALLGONE };
 
         EImageStat nImageOnLoaded;// 현재 올라와 있는 이미지 개수 [10/13/2013 Administrator]
@@ -279,72 +283,115 @@ namespace lgshow
 
         protected override void OnManipulationDelta(ManipulationDeltaEventArgs args)
         {
-            UIElement element = args.Source as UIElement;
-            MatrixTransform xform = element.RenderTransform as MatrixTransform;
-            Matrix matrix = xform.Matrix;
-            ManipulationDelta delta = args.DeltaManipulation;
-            Point center = args.ManipulationOrigin;
-            /*
-            matrix.Translate(-center.X, -center.Y);
-            matrix.Scale(delta.Scale.X, delta.Scale.Y);
-            matrix.Rotate(delta.Rotation);
-            matrix.Translate(center.X, center.Y);
-            matrix.Translate(delta.Translation.X, delta.Translation.Y);           
-            xform.Matrix = matrix;
-            */
-            Matrix to = matrix;
-            to.Translate(-center.X, -center.Y);
-            to.Scale(delta.Scale.X, delta.Scale.Y);
-            to.Rotate(delta.Rotation);
-            to.Translate(center.X, center.Y);
-            to.Translate(delta.Translation.X, delta.Translation.Y);
-
-            MatrixAnimation b = new MatrixAnimation()
+            try
             {
-                From = matrix,
-                To = to,
-                Duration = TimeSpan.FromMilliseconds(0),
-                FillBehavior = FillBehavior.HoldEnd
+                UIElement element = args.Source as UIElement;
+                MatrixTransform xform = element.RenderTransform as MatrixTransform;
+                Matrix matrix = xform.Matrix;
+                ManipulationDelta delta = args.DeltaManipulation;
+                Point center = args.ManipulationOrigin;
+                /*
+                matrix.Translate(-center.X, -center.Y);
+                matrix.Scale(delta.Scale.X, delta.Scale.Y);
+                matrix.Rotate(delta.Rotation);
+                matrix.Translate(center.X, center.Y);
+                matrix.Translate(delta.Translation.X, delta.Translation.Y);           
+                xform.Matrix = matrix;
+                */
+                Matrix to = matrix;
+                to.Translate(-center.X, -center.Y);
+                to.Scale(delta.Scale.X, delta.Scale.Y);
+                to.Rotate(delta.Rotation);
+                to.Translate(center.X, center.Y);
+                to.Translate(delta.Translation.X, delta.Translation.Y);
+
+                MatrixAnimation b = new MatrixAnimation()
+                {
+                    From = matrix,
+                    To = to,
+                    Duration = TimeSpan.FromMilliseconds(0),
+                    FillBehavior = FillBehavior.HoldEnd
+                };
+                (element.RenderTransform as MatrixTransform).BeginAnimation(MatrixTransform.MatrixProperty, b);
+
+
+                //tbTranslate.Text = string.Format("Translation: {0}, {1}", delta.Translation.X, delta.Translation.Y);
+                //tbTranslate.Text += string.Format("\r\nTotal Translation: {0}, {1}", args.CumulativeManipulation.Translation.X, args.CumulativeManipulation.Translation.Y);
+
+                args.Handled = true;
+                base.OnManipulationDelta(args);
+            }
+            catch
+            {
+                //MessageBox.Show("OnManipulationDelta");
             };
-            (element.RenderTransform as MatrixTransform).BeginAnimation(MatrixTransform.MatrixProperty, b);
-
-
-
-            //tbTranslate.Text = string.Format("Translation: {0}, {1}", delta.Translation.X, delta.Translation.Y);
-            //tbTranslate.Text += string.Format("\r\nTotal Translation: {0}, {1}", args.CumulativeManipulation.Translation.X, args.CumulativeManipulation.Translation.Y);
-
-            args.Handled = true;
-            base.OnManipulationDelta(args);
         }
 
         protected override void OnManipulationCompleted(ManipulationCompletedEventArgs e)
         {
-
-           // tbCompleted.Text = string.Format("{0}", e.FinalVelocities.LinearVelocity);
-           // tbCompleted.Text += string.Format("\r\n{0}", e.TotalManipulation.Translation);
-            UIElement el = e.Source as UIElement;
-            el.Effect = new BlurEffect() { Radius = 10.0 };
-
-            MatrixTransform xform = el.RenderTransform as MatrixTransform;
-            Matrix matrix = xform.Matrix;
-            Matrix from = matrix;
-            Matrix to = matrix;
-            to.Translate(e.TotalManipulation.Translation.X * Math.Abs(e.FinalVelocities.LinearVelocity.X), e.TotalManipulation.Translation.Y * Math.Abs(e.FinalVelocities.LinearVelocity.Y));
-
-            if (Math.Abs(e.FinalVelocities.LinearVelocity.X) > 0.5 || Math.Abs(e.FinalVelocities.LinearVelocity.Y) > 0.5)
+            try
             {
-                MatrixAnimation b = new MatrixAnimation()
+
+                // tbCompleted.Text = string.Format("{0}", e.FinalVelocities.LinearVelocity);
+                // tbCompleted.Text += string.Format("\r\n{0}", e.TotalManipulation.Translation);
+                UIElement el = e.Source as UIElement;
+                //el.Effect = new BlurEffect() { Radius = 10.0 };
+
+                MatrixTransform xform = el.RenderTransform as MatrixTransform;
+                Matrix matrix = xform.Matrix;
+                Matrix from = matrix;
+                Matrix to = matrix;
+                to.Translate(
+                    e.TotalManipulation.Translation.X * Math.Abs(e.FinalVelocities.LinearVelocity.X),
+                    e.TotalManipulation.Translation.Y * Math.Abs(e.FinalVelocities.LinearVelocity.Y));
+
+                if (Math.Abs(e.FinalVelocities.LinearVelocity.X) > 0.5 || Math.Abs(e.FinalVelocities.LinearVelocity.Y) > 0.5)
                 {
-                    From = from,
-                    To = to,
-                    Duration = TimeSpan.FromMilliseconds(500),
-                    FillBehavior = FillBehavior.HoldEnd
-                };
-                (el.RenderTransform as MatrixTransform).BeginAnimation(MatrixTransform.MatrixProperty, b);
+                    MatrixAnimation b = new MatrixAnimation()
+                    {
+                        From = from,
+                        To = to,
+                        Duration = TimeSpan.FromMilliseconds(500),
+                        FillBehavior = FillBehavior.HoldEnd
+                    };
+                    b.Completed += new EventHandler(b_Completed);
+                    (el.RenderTransform as MatrixTransform).BeginAnimation(MatrixTransform.MatrixProperty, b);
+                }
+
+                base.OnManipulationCompleted(e);
+
+                label1.Content = "to : " + to.OffsetY.ToString() + "\nel : " + xform.Matrix.OffsetY.ToString() + "\ne.total : " + e.TotalManipulation.Translation.Y.ToString() + "\ne.final : " + e.FinalVelocities.LinearVelocity.Y.ToString();
+                currImgDestination = to;
+                currImgVelocity = e.FinalVelocities.LinearVelocity;
+                currManipulImage = el as Image;
+            }
+            catch
+            {
+                //MessageBox.Show("OnManipulationCompleted");
+            };
+        }
+
+        void b_Completed(object sender, EventArgs e)
+        {
+            if (currImgDestination.OffsetY < 50.0f) // 최종 목적지 : 위
+            {
+                this.ImageToScreen((currManipulImage));
+            }
+            else if (currImgDestination.OffsetY > 920.0f) // 최종 목적지 : 아래
+            {
+                this.ImageDestory((currManipulImage));
+            }
+            else if (currImgDestination.OffsetX < 100.0f) // 최종 목적지 : 왼쪽
+            {
+                this.ImageDestory((currManipulImage));
+            }
+            else if (currImgDestination.OffsetX > 1820.0f) // 최종 목적지 : 오른쪽
+            {
+                this.ImageDestory((currManipulImage));
             }
 
 
-            base.OnManipulationCompleted(e);
+           // throw new NotImplementedException();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -401,39 +448,70 @@ namespace lgshow
 
             //label1.Content = vtVelocity.Y.ToString();
            
-
+            
 
 
             if ((ptCurrPos.Y < 100.0f) && (vtVelocity.Y < -0.75f))
             {
-                if (win4K.GetCurrentImage() == img.Source)
-                    return;
-
-                win4K.ShowImage(img.Source);
-
-
-                if ((nImageOnLoaded == EImageStat.STAT_ONEHASGONE) || (nImageOnLoaded == EImageStat.STAT_PIC1))
-                {
-                    img_slideup.Visibility = Visibility.Hidden; // 올려주세요 이미지 사라짐.  
-                    rct_fadeout.Visibility = Visibility.Hidden; // 페이드 사라짐 
-                }
-
-
-                if (nImageOnLoaded == EImageStat.STAT_PIC2) // 사진 2개면
-                    nImageOnLoaded = EImageStat.STAT_ONEHASGONE;    // 한개 보내고
-                else if (nImageOnLoaded == EImageStat.STAT_PIC1)    // 사진 1개면
-                    nImageOnLoaded = EImageStat.STAT_ALLGONE;   // 모두 가고
-                else if (nImageOnLoaded == EImageStat.STAT_ONEHASGONE)  // 사진 1개면
-                    nImageOnLoaded = EImageStat.STAT_ALLGONE;   // 모두 가고
-
-
-                //img.SetValue(Canvas.LeftProperty, 0d);// 이미지 위치 원래대로 
-                //img.SetValue(Canvas.TopProperty, 0d);
-
-                img.Visibility = Visibility.Hidden; // 이미지 사라짐
+                //ImageToScreen(img);
             }
 
            // ptOldPos = ptCurrPos;
+        }
+
+        private void ImageDestory(Image img)
+        {
+            //if (win4K.GetCurrentImage() == img.Source)
+              //  return;
+
+            //win4K.ShowImage(img.Source);
+
+
+            if ((nImageOnLoaded == EImageStat.STAT_ONEHASGONE) || (nImageOnLoaded == EImageStat.STAT_PIC1))
+            {
+                img_slideup.Visibility = Visibility.Hidden; // 올려주세요 이미지 사라짐.  
+                rct_fadeout.Visibility = Visibility.Hidden; // 페이드 사라짐 
+            }
+
+            if (nImageOnLoaded == EImageStat.STAT_PIC2) // 사진 2개면
+                nImageOnLoaded = EImageStat.STAT_ONEHASGONE;    // 한개 보내고
+            else if (nImageOnLoaded == EImageStat.STAT_PIC1)    // 사진 1개면
+                nImageOnLoaded = EImageStat.STAT_ALLGONE;   // 모두 가고
+            else if (nImageOnLoaded == EImageStat.STAT_ONEHASGONE)  // 사진 1개면
+                nImageOnLoaded = EImageStat.STAT_ALLGONE;   // 모두 가고
+
+            img.Visibility = Visibility.Hidden; // 이미지 사라짐
+        }
+
+        private void ImageToScreen(Image img)
+        {
+            if (win4K.GetCurrentImage() == img.Source)  // 이미 같은게 올라와 있다면
+            {
+            }
+            else
+            {
+                win4K.ShowImage(img.Source);
+            }
+
+            if ((nImageOnLoaded == EImageStat.STAT_ONEHASGONE) || (nImageOnLoaded == EImageStat.STAT_PIC1))
+            {
+                img_slideup.Visibility = Visibility.Hidden; // 올려주세요 이미지 사라짐.  
+                rct_fadeout.Visibility = Visibility.Hidden; // 페이드 사라짐 
+            }
+
+
+            if (nImageOnLoaded == EImageStat.STAT_PIC2) // 사진 2개면
+                nImageOnLoaded = EImageStat.STAT_ONEHASGONE;    // 한개 보내고
+            else if (nImageOnLoaded == EImageStat.STAT_PIC1)    // 사진 1개면
+                nImageOnLoaded = EImageStat.STAT_ALLGONE;   // 모두 가고
+            else if (nImageOnLoaded == EImageStat.STAT_ONEHASGONE)  // 사진 1개면
+                nImageOnLoaded = EImageStat.STAT_ALLGONE;   // 모두 가고
+
+
+            //img.SetValue(Canvas.LeftProperty, 0d);// 이미지 위치 원래대로 
+            //img.SetValue(Canvas.TopProperty, 0d);
+
+            img.Visibility = Visibility.Hidden; // 이미지 사라짐
         }
 
 
