@@ -185,7 +185,8 @@ namespace lgshow
         List<List<BitmapSource>> lst2xPNG;
         Image m_currImage1 = null;
         Image m_currImage2 = null;
-        //System.Media.SoundPlayer m_SP = null;
+        
+        System.Media.SoundPlayer m_SP = null;
         //MediaElement m_ME = null;
         ShowWindow win4K = null;
 
@@ -205,11 +206,17 @@ namespace lgshow
 
             label1.Content = "";
 
-            me_bubble.MediaEnded += new RoutedEventHandler(me_bubble_MediaEnded);
             //m_SP = new System.Media.SoundPlayer();
+            m_SP = new System.Media.SoundPlayer(lgshow.Properties.Resources.water_bubble_high);
+            //m_SP.Play();
+
+            //me_bubble.MediaEnded += new RoutedEventHandler(me_bubble_MediaEnded);
+            
             //System.IO.Stream stream = new System.IO.MemoryStream(Properties.Resources.water_bubble_high);
             //m_SP.Stream = stream;   //(리소스에 등록한 파일명을 Properties.Recources를 통해 바로 불러올 수있음)
-            //m_SP = new System.Media.SoundPlayer("water_bubble_high.mp3");
+            
+            //m_SP = new System.Media.SoundPlayer(@"c:\water_bubble_high.mp3");
+            
             //m_ME = new MediaElement();
             //m_ME.Source = new Uri(@"water_bubble_high.mp3", UriKind.Relative);
             //m_ME.Source = new Uri(@"D:\PARTJOB_WORK\lgshow_wpf_project\lgshow\trunk\water_bubble_high.mp3", UriKind.Absolute);
@@ -253,8 +260,8 @@ namespace lgshow
 
         void me_bubble_MediaEnded(object sender, RoutedEventArgs e)
         {
-            me_bubble.Position = TimeSpan.FromSeconds(0);
-            me_bubble.Stop();
+            //me_bubble.Position = TimeSpan.FromSeconds(0);
+           // me_bubble.Stop();
             //throw new NotImplementedException();
         }
 
@@ -594,9 +601,11 @@ namespace lgshow
 
             img_slideup.Visibility = Visibility.Visible;
 
-            me_bubble.Stop();
-            me_bubble.Position = TimeSpan.FromSeconds(0);
-            me_bubble.Play();
+
+            m_SP.Play();
+            //me_bubble.Stop();
+            //me_bubble.Position = TimeSpan.FromSeconds(0);
+            //me_bubble.Play();
             
             //if (m_ME.IsLoaded)
             //    m_ME.Play();

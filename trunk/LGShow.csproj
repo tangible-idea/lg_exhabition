@@ -666,9 +666,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="water_bubble_high.mp3">
+    <Content Include="water_bubble_high.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\밀어올려주세요.png" />
@@ -677,6 +677,7 @@
     <Content Include="movie\lge_2012.wmv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\water_bubble_high.wav" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\th\BMS 1.jpg" />

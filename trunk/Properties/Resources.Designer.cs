@@ -61,12 +61,11 @@ namespace lgshow.Properties {
         }
         
         /// <summary>
-        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        ///   System.IO.MemoryStream과(와) 유사한 System.IO.UnmanagedMemoryStream 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static byte[] water_bubble_high {
+        internal static System.IO.UnmanagedMemoryStream water_bubble_high {
             get {
-                object obj = ResourceManager.GetObject("water_bubble_high", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetStream("water_bubble_high", resourceCulture);
             }
         }
     }
