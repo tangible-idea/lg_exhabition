@@ -5,7 +5,7 @@
         FontSize="24" mc:Ignorable="d"
         xmlns:local="clr-namespace:Clarity.Demo.ImageSequencer"
         WindowStyle="None" ResizeMode="NoResize"  
-    WindowStartupLocation="CenterScreen" WindowState="Maximized"
+    WindowStartupLocation="CenterScreen" WindowState="Maximized" Keyboard.KeyDown="Window_Keyboard_KeyDown"  KeyDown="Window_KeyDown"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Left="0" Top="0" Height="1080" Width="1920"
         Loaded="Window_Loaded"
@@ -27,6 +27,9 @@
         <Canvas.Background>
             <ImageBrush ImageSource="Images/background.png" Stretch="UniformToFill" TileMode="None" />
         </Canvas.Background>
+
+        <!--<MediaElement Source="D:\PARTJOB_WORK\lgshow_wpf_project\lgshow\trunk\water_bubble_high.mp3"/>-->
+        <MediaElement Name="me_bubble" Source="water_bubble_high.mp3" LoadedBehavior="Manual"  UnloadedBehavior="Stop"/>
 
 
         <!--<Grid>-->

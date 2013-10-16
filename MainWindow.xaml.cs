@@ -180,11 +180,13 @@ namespace lgshow
 
     public partial class MainWindow : Window
     {
+        System.Windows.Threading.DispatcherTimer TimerClock;
         ManipulationModes currentMode = ManipulationModes.All;
         List<List<BitmapSource>> lst2xPNG;
         Image m_currImage1 = null;
         Image m_currImage2 = null;
-        System.Media.SoundPlayer m_SP = null;
+        //System.Media.SoundPlayer m_SP = null;
+        //MediaElement m_ME = null;
         ShowWindow win4K = null;
 
         Matrix currImgDestination;
@@ -203,10 +205,16 @@ namespace lgshow
 
             label1.Content = "";
 
+            me_bubble.MediaEnded += new RoutedEventHandler(me_bubble_MediaEnded);
             //m_SP = new System.Media.SoundPlayer();
             //System.IO.Stream stream = new System.IO.MemoryStream(Properties.Resources.water_bubble_high);
             //m_SP.Stream = stream;   //(리소스에 등록한 파일명을 Properties.Recources를 통해 바로 불러올 수있음)
-            m_SP = new System.Media.SoundPlayer("water_bubble_high.mp3");
+            //m_SP = new System.Media.SoundPlayer("water_bubble_high.mp3");
+            //m_ME = new MediaElement();
+            //m_ME.Source = new Uri(@"water_bubble_high.mp3", UriKind.Relative);
+            //m_ME.Source = new Uri(@"D:\PARTJOB_WORK\lgshow_wpf_project\lgshow\trunk\water_bubble_high.mp3", UriKind.Absolute);
+            
+            //m_ME.LoadedBehavior = MediaState.Manual;
 
             //if (!m_SP.IsLoadCompleted)
             //    MessageBox.Show("sound load failed");
@@ -227,6 +235,27 @@ namespace lgshow
             //    radio.Checked += new RoutedEventHandler(OnRadioChecked);
             //    modeList.Children.Add(radio);
             //}
+        }
+
+        private void Window_Keyboard_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.GetKeyStates(Key.Escape) == KeyStates.Down)
+            {
+                this.AllImageClose();
+            }
+            //label1.Content = "Keyboard.KeyDown";
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            //label2.Content = "UIElement.KeyDown";
+        }
+
+        void me_bubble_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            me_bubble.Position = TimeSpan.FromSeconds(0);
+            me_bubble.Stop();
+            //throw new NotImplementedException();
         }
 
         // png 전부 로드 [10/9/2013 Administrator]
@@ -373,19 +402,19 @@ namespace lgshow
 
         void b_Completed(object sender, EventArgs e)
         {
-            if (currImgDestination.OffsetY < 50.0f) // 최종 목적지 : 위
+            if (currImgDestination.OffsetY < 150.0f) // 최종 목적지 : 위
             {
                 this.ImageToScreen((currManipulImage));
             }
-            else if (currImgDestination.OffsetY > 920.0f) // 최종 목적지 : 아래
+            else if (currImgDestination.OffsetY > 850.0f) // 최종 목적지 : 아래
             {
                 this.ImageDestory((currManipulImage));
             }
-            else if (currImgDestination.OffsetX < 100.0f) // 최종 목적지 : 왼쪽
+            else if (currImgDestination.OffsetX < 350.0f) // 최종 목적지 : 왼쪽
             {
                 this.ImageDestory((currManipulImage));
             }
-            else if (currImgDestination.OffsetX > 1820.0f) // 최종 목적지 : 오른쪽
+            else if (currImgDestination.OffsetX > 1220.0f) // 최종 목적지 : 오른쪽
             {
                 this.ImageDestory((currManipulImage));
             }
@@ -439,19 +468,22 @@ namespace lgshow
         //    if (nImageOnLoaded == 0)    // 중복 이벤트 무시
           //      return;
 
-            Image img = sender as Image;
+            TimerClock.Stop();
+            TimerClock.Start();
 
-            GeneralTransform transform = img.TransformToAncestor(this);
-            ptCurrPos = transform.Transform(new Point(0, 0));
+            //Image img = sender as Image;
 
-            Vector vtVelocity = e.Velocities.LinearVelocity;
+            //GeneralTransform transform = img.TransformToAncestor(this);
+            //ptCurrPos = transform.Transform(new Point(0, 0));
+
+            //Vector vtVelocity = e.Velocities.LinearVelocity;
 
             //label1.Content = vtVelocity.Y.ToString();
            
             
 
 
-            if ((ptCurrPos.Y < 100.0f) && (vtVelocity.Y < -0.75f))
+           // if ((ptCurrPos.Y < 100.0f) && (vtVelocity.Y < -0.75f))
             {
                 //ImageToScreen(img);
             }
@@ -536,6 +568,25 @@ namespace lgshow
           //}
         }
 
+        private void AllImageClose()
+        {
+            if ((m_currImage1 == null) || (m_currImage2 == null))
+            {
+            }
+            else
+            {
+                m_currImage1.Visibility = Visibility.Hidden;
+                m_currImage2.Visibility = Visibility.Hidden;
+                RectHidden();
+            }
+
+            if ((m_currImage1 != null))
+            {
+                m_currImage1.Visibility = Visibility.Hidden;
+                RectHidden();
+            }
+        }
+
         private void RectOverlap()
         {
             rct_fadeout.Visibility = Visibility.Visible;
@@ -543,8 +594,14 @@ namespace lgshow
 
             img_slideup.Visibility = Visibility.Visible;
 
-            if (m_SP.IsLoadCompleted)
-                m_SP.Play();
+            me_bubble.Stop();
+            me_bubble.Position = TimeSpan.FromSeconds(0);
+            me_bubble.Play();
+            
+            //if (m_ME.IsLoaded)
+            //    m_ME.Play();
+            //if (m_SP.IsLoadCompleted)
+                //m_SP.Play();
             
         }
 
@@ -741,8 +798,19 @@ namespace lgshow
             RectOverlap();
         }
 
+        // 이미지 조작이 없으면 화면 끈다.
+        void TimerClock_Tick(object sender, EventArgs e)
+        {
+            this.AllImageClose();
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            TimerClock = new System.Windows.Threading.DispatcherTimer();
+            TimerClock.Interval = new TimeSpan(0, 0, 0, 0, 30000); // milliseconds
+            TimerClock.IsEnabled = true;
+            TimerClock.Tick += new EventHandler(TimerClock_Tick);
+
             img_slideup.Visibility = Visibility.Hidden;
 
             lst2xPNG = new List<List<BitmapSource>>();
