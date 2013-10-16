@@ -674,54 +674,54 @@
     <Resource Include="Images\밀어올려주세요.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="movie\lge_2012.wmv">
+    <Content Include="movie\lge_2012.wmv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\th\BMS 1.jpg" />
-    <EmbeddedResource Include="Images\th\BMS 2.jpg" />
-    <EmbeddedResource Include="Images\th\GHP 설치사례.jpg" />
-    <EmbeddedResource Include="Images\th\LED.jpg" />
-    <EmbeddedResource Include="Images\th\LG ENERGY BALANCE CITY.jpg" />
-    <EmbeddedResource Include="Images\th\Multi V 설치사례.jpg" />
-    <EmbeddedResource Include="Images\th\TMS 1.jpg" />
-    <EmbeddedResource Include="Images\th\TMS 2.jpg" />
-    <EmbeddedResource Include="Images\th\밀어올려주세요.png" />
-    <EmbeddedResource Include="Images\th\빌딩-MULTI V 1.jpg" />
-    <EmbeddedResource Include="Images\th\빌딩-MULTI V 2.jpg" />
-    <EmbeddedResource Include="Images\th\스쿨_GHP 1.jpg" />
-    <EmbeddedResource Include="Images\th\스쿨_GHP 2.jpg" />
-    <EmbeddedResource Include="Images\th\지열_MultiVGEO 1.jpg" />
-    <EmbeddedResource Include="Images\th\지열_MultiVGEO 2.jpg" />
-    <EmbeddedResource Include="Images\th\태양광.jpg" />
-    <EmbeddedResource Include="Images\th\터보 히트펌프 설치사례.jpg" />
-    <EmbeddedResource Include="Images\th\터보히트펌프 1.jpg" />
-    <EmbeddedResource Include="Images\th\터보히트펌프 2.jpg" />
-    <EmbeddedResource Include="Images\th\흡수식칠러 1.jpg" />
-    <EmbeddedResource Include="Images\th\흡수식칠러 2.jpg" />
+    <Content Include="Images\th\BMS 1.jpg" />
+    <Content Include="Images\th\BMS 2.jpg" />
+    <Content Include="Images\th\GHP 설치사례.jpg" />
+    <Content Include="Images\th\LED.jpg" />
+    <Content Include="Images\th\LG ENERGY BALANCE CITY.jpg" />
+    <Content Include="Images\th\Multi V 설치사례.jpg" />
+    <Content Include="Images\th\TMS 1.jpg" />
+    <Content Include="Images\th\TMS 2.jpg" />
+    <Content Include="Images\th\밀어올려주세요.png" />
+    <Content Include="Images\th\빌딩-MULTI V 1.jpg" />
+    <Content Include="Images\th\빌딩-MULTI V 2.jpg" />
+    <Content Include="Images\th\스쿨_GHP 1.jpg" />
+    <Content Include="Images\th\스쿨_GHP 2.jpg" />
+    <Content Include="Images\th\지열_MultiVGEO 1.jpg" />
+    <Content Include="Images\th\지열_MultiVGEO 2.jpg" />
+    <Content Include="Images\th\태양광.jpg" />
+    <Content Include="Images\th\터보 히트펌프 설치사례.jpg" />
+    <Content Include="Images\th\터보히트펌프 1.jpg" />
+    <Content Include="Images\th\터보히트펌프 2.jpg" />
+    <Content Include="Images\th\흡수식칠러 1.jpg" />
+    <Content Include="Images\th\흡수식칠러 2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\4k\BMS 1.jpg" />
-    <EmbeddedResource Include="Images\4k\BMS 2.jpg" />
-    <EmbeddedResource Include="Images\4k\GHP 설치사례.jpg" />
-    <EmbeddedResource Include="Images\4k\LED.jpg" />
-    <EmbeddedResource Include="Images\4k\LG ENERGY BALANCE CITY.jpg" />
-    <EmbeddedResource Include="Images\4k\Multi V 설치사례.jpg" />
-    <EmbeddedResource Include="Images\4k\TMS 1.jpg" />
-    <EmbeddedResource Include="Images\4k\TMS 2.jpg" />
-    <EmbeddedResource Include="Images\4k\빌딩-MULTI V 1.jpg" />
-    <EmbeddedResource Include="Images\4k\빌딩-MULTI V 2.jpg" />
-    <EmbeddedResource Include="Images\4k\스쿨_GHP 1.jpg" />
-    <EmbeddedResource Include="Images\4k\스쿨_GHP 2.jpg" />
-    <EmbeddedResource Include="Images\4k\지열_MultiVGEO 1.jpg" />
-    <EmbeddedResource Include="Images\4k\지열_MultiVGEO 2.jpg" />
-    <EmbeddedResource Include="Images\4k\태양광.jpg" />
-    <EmbeddedResource Include="Images\4k\터보 히트펌프 설치사례.jpg" />
-    <EmbeddedResource Include="Images\4k\터보히트펌프 1.jpg" />
-    <EmbeddedResource Include="Images\4k\터보히트펌프 2.jpg" />
-    <EmbeddedResource Include="Images\4k\흡수식칠러 1.jpg" />
-    <EmbeddedResource Include="Images\4k\흡수식칠러 2.jpg" />
+    <Content Include="Images\4k\BMS 1.jpg" />
+    <Content Include="Images\4k\BMS 2.jpg" />
+    <Content Include="Images\4k\GHP 설치사례.jpg" />
+    <Content Include="Images\4k\LED.jpg" />
+    <Content Include="Images\4k\LG ENERGY BALANCE CITY.jpg" />
+    <Content Include="Images\4k\Multi V 설치사례.jpg" />
+    <Content Include="Images\4k\TMS 1.jpg" />
+    <Content Include="Images\4k\TMS 2.jpg" />
+    <Content Include="Images\4k\빌딩-MULTI V 1.jpg" />
+    <Content Include="Images\4k\빌딩-MULTI V 2.jpg" />
+    <Content Include="Images\4k\스쿨_GHP 1.jpg" />
+    <Content Include="Images\4k\스쿨_GHP 2.jpg" />
+    <Content Include="Images\4k\지열_MultiVGEO 1.jpg" />
+    <Content Include="Images\4k\지열_MultiVGEO 2.jpg" />
+    <Content Include="Images\4k\태양광.jpg" />
+    <Content Include="Images\4k\터보 히트펌프 설치사례.jpg" />
+    <Content Include="Images\4k\터보히트펌프 1.jpg" />
+    <Content Include="Images\4k\터보히트펌프 2.jpg" />
+    <Content Include="Images\4k\흡수식칠러 1.jpg" />
+    <Content Include="Images\4k\흡수식칠러 2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
