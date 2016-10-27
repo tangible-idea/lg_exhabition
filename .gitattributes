@@ -1,0 +1,2 @@
+movie/lge_2012.wmv filter=lfs -text
+obj/x86/Debug/lgshow.exe filter=lfs -text
